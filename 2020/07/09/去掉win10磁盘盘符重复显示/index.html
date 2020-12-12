@@ -11,7 +11,7 @@
   <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
   
   
-    <meta name="keywords" content="磁盘盘符," />
+    <meta name="keywords" content="Windows,磁盘盘符," />
   
 
   
@@ -88,7 +88,7 @@
       <span class="slash">/</span>
       <span class="post-meta">
       <span class="post-tags">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A3%81%E7%9B%98%E7%9B%98%E7%AC%A6/" rel="tag">磁盘盘符</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A3%81%E7%9B%98%E7%9B%98%E7%AC%A6/" rel="tag">磁盘盘符</a></li></ul>
       </span>
     </span>
       <span class="slash">/</span>
@@ -100,7 +100,10 @@
     </header>
 
     <div class="post-content">
-      <p><strong>1、</strong> 快捷键<code>win+R</code>进入运行窗口，然后输入<code>regedit</code>，在地址栏输入<code>计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders</code>，即可定位到显示磁盘盘符的位置</p>
+      <p>去掉磁盘重复显示</p>
+<a id="more"></a>
+
+<p><strong>1、</strong> 快捷键<code>win+R</code>进入运行窗口，然后输入<code>regedit</code>，在地址栏输入<code>计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders</code>，即可定位到显示磁盘盘符的位置</p>
 <p><img src="/images/2020/07/09/54861000.jpg" alt=""></p>
 <hr>
 <p><strong>2、</strong> 然后把<code>{F5FB2C77-0E2F-4A16-A381-3E560C68BC83}</code>项重命名，在前面加了减号“-”就是改成<code>-{F5FB2C77-0E2F-4A16-A381-3E560C68BC83}</code>即可，如图所示：</p>
