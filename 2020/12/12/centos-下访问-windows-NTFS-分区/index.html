@@ -19,7 +19,7 @@
   
   
   <link rel="icon" type="image/x-icon" href="/logo.png">
-  <title>archives: 7/2020: 2020 [ 技术流 ]</title>
+  <title>centos 下访问 windows NTFS 分区 [ 技术流 ]</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -46,7 +46,7 @@
           
       
           
-            <li class="pure-menu-item actived"><a href="/archives" class="pure-menu-link">归档</a></li>
+            <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">归档</a></li>
           
       
           
@@ -72,58 +72,78 @@
 
   <div class="container" id="content-outer">
     <div class="inner" id="content-inner">
-      
-
-  
-  
-    
-    
-    <section class="post page archives">
-      <h3 class="archive-year-wrap">
-        <a href="/archives/2020" class="archive-year">
-          2020
-        </a>
-      </h3>
-      <div class="archives">
-  
-  <div class="archive" >
-  <a class="post-go" href="/2020/07/09/去掉win10磁盘盘符重复显示/">
-    <div>
-      <span class="date">
-        07-09
+      <div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        centos 下访问 windows NTFS 分区
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-12-12T07:29:55.000Z">
+        2020-12-12
+      </time>
+        
       </span>
       <span class="slash">/</span>
-      去掉 win10 磁盘盘符重复显示
-    </div>
-
-    <!--<div class="excerpt">-->
-      <!---->
-    <!--</div>-->
-  </a>
-
-</div>
-
-  
-  
-  <div class="archive" >
-  <a class="post-go" href="/2020/07/03/hello-world/">
-    <div>
-      <span class="date">
-        07-03
+      <span class="post-meta">
+      <span class="post-tags">
+        
       </span>
+    </span>
       <span class="slash">/</span>
-      Hello World
+      <span class="read">
+      <span id="busuanzi_value_page_pv"></span> 点击
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 1 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <p><strong>1、下载安装</strong></p>
+<p><a href="https://www.hemingsheng.cn/file/download.hms?filename=ntfs-3g_ntfsprogs-2017.3.23.tgz" target="_blank" rel="noopener" title="点击下载">点击下载ntfs-3g_ntfsprogs-2017.3.23.tgz</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line">tar xzvf ntfs-3g-***.tar.gz</span><br><span class="line"></span><br><span class="line">cd ntfs-3g-***</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 编译安装</span></span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 如果有如下错误</span></span></span><br><span class="line">configure: error: in `/home/husen/Downloads/ntfs-3g_ntfsprogs-2017.3.23':</span><br><span class="line">configure: error: no acceptable C compiler found in $PATH</span><br><span class="line">See `config.log' for more details</span><br><span class="line"></span><br><span class="line">yum -y install gcc</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p><strong>2、手动挂在NTFS分区</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看当前所有磁盘分区类型</span></span><br><span class="line"> fdisk -l</span><br><span class="line"><span class="meta"> #</span><span class="bash"> 手动挂载</span></span><br><span class="line"> mount -t ntfs-3g /dev/sda1 /ntfs</span><br><span class="line"><span class="meta">#</span><span class="bash"> 手动卸载</span></span><br><span class="line">umount /dev/sda1</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p><strong>3、自动挂载</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 备份</span></span><br><span class="line">cp /etc/fstab /etc/fstab_bk</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 编辑</span></span><br><span class="line">vi /etc/fstab #编辑</span><br><span class="line"></span><br><span class="line">在最后添加以下信息，以读写方式挂载磁盘</span><br><span class="line"></span><br><span class="line">/dev/sda5    /ntfs/c-winos   defaults  0  0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">:wq!保存，退出</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输入命令生效生效</span></span><br><span class="line">mount -a</span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者重启</span></span><br></pre></td></tr></table></figure>
     </div>
 
-    <!--<div class="excerpt">-->
-      <!---->
-    <!--</div>-->
-  </a>
+    <div>全文完。</div>
+  </article>
+  <div class="toc-container">
+    
 
+  </div>
 </div>
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/2020/12/12/windows-10-8-7-%E5%92%8C-CentOS-7-%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%B9%B6%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4windows%E5%90%AF%E5%8A%A8/" rel="next" title="windows 10/8/7 和 CentOS 7 双系统并设置默认windows启动">
+          windows 10/8/7 和 CentOS 7 双系统并设置默认windows启动
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/2020/12/12/linux%E7%B3%BB%E7%BB%9Frwx%EF%BC%88421%EF%BC%89%E3%80%81777%E6%9D%83%E9%99%90%E8%AF%A6%E8%A7%A3/" rel="prev" title="linux系统rwx（421）、777权限详解">
+            linux系统rwx（421）、777权限详解
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
 
-
-  </div></section>
 
     </div>
 

@@ -19,7 +19,7 @@
   
   
   <link rel="icon" type="image/x-icon" href="/logo.png">
-  <title>archives: 7/2020: 2020 [ 技术流 ]</title>
+  <title>手动在电脑桌面制作关机/重启图标并添加到任务栏 [ 技术流 ]</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -46,7 +46,7 @@
           
       
           
-            <li class="pure-menu-item actived"><a href="/archives" class="pure-menu-link">归档</a></li>
+            <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">归档</a></li>
           
       
           
@@ -72,58 +72,87 @@
 
   <div class="container" id="content-outer">
     <div class="inner" id="content-inner">
-      
-
-  
-  
-    
-    
-    <section class="post page archives">
-      <h3 class="archive-year-wrap">
-        <a href="/archives/2020" class="archive-year">
-          2020
-        </a>
-      </h3>
-      <div class="archives">
-  
-  <div class="archive" >
-  <a class="post-go" href="/2020/07/09/去掉win10磁盘盘符重复显示/">
-    <div>
-      <span class="date">
-        07-09
+      <div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        手动在电脑桌面制作关机/重启图标并添加到任务栏
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-12-12T07:22:01.000Z">
+        2020-12-12
+      </time>
+        
       </span>
       <span class="slash">/</span>
-      去掉 win10 磁盘盘符重复显示
-    </div>
-
-    <!--<div class="excerpt">-->
-      <!---->
-    <!--</div>-->
-  </a>
-
-</div>
-
-  
-  
-  <div class="archive" >
-  <a class="post-go" href="/2020/07/03/hello-world/">
-    <div>
-      <span class="date">
-        07-03
+      <span class="post-meta">
+      <span class="post-tags">
+        
       </span>
+    </span>
       <span class="slash">/</span>
-      Hello World
+      <span class="read">
+      <span id="busuanzi_value_page_pv"></span> 点击
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 2 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <p>*<em>1、在桌面右键 -&gt; 新建快捷方式 *</em></p>
+<p><img src="/images/2020/12/12/28662000.png" alt=""></p>
+<hr>
+<p><strong>2、在弹出的向导中输入以下内容</strong></p>
+<p><code>C:\Windows\System32\shutdown.exe -s -t 3 -c &quot;电脑3秒后关机！&quot;</code></p>
+<p>其中-s代表关机，-t代表几秒后关机，-t后面的数字为具体时间，-c后面后关机提示内容。</p>
+<p><img src="/images/2020/12/12/28738000.png" alt=""></p>
+<hr>
+<p><strong>3、选择下一步，输入快捷方式名称，然后确定</strong></p>
+<p><img src="/images/2020/12/12/28835000.png" alt=""></p>
+<hr>
+<p><strong>4、这时候快捷方式还没有图标，比较难看。在快捷方式上右键 -&gt; 属性 -&gt; 更改图标，可以选择一个系统图标，或者自定义图标</strong></p>
+<p><img src="/images/2020/12/12/29250000.png" alt=""></p>
+<hr>
+<p><strong>5、最后将图标右键添加到任务栏，然后删除快捷方式即可</strong></p>
+<p><img src="/images/2020/12/12/29308000.png" alt=""></p>
+<hr>
+<p><strong>6、在快捷方式右键 -&gt; 属性 中还可以修改刚刚设置的参数，将-s改为-r，就是重启了</strong></p>
+<p><img src="/images/2020/12/12/29341000.png" alt=""></p>
+<hr>
+<p><strong>特别的：更多cmd shutdown参数如下，这些参数也可以直接加到前面的<code>目标</code>属性中</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">shutdown -a　取消关机 s </span><br><span class="line">shutdown -s 关机 </span><br><span class="line">shutdown -f　强行关闭应用程序 </span><br><span class="line">shutdown -m \\计算机名　控制远程计算机 </span><br><span class="line">shutdown.-i　显示图形用户界面，但必须是Shutdown的第一个参数 </span><br><span class="line">shutdown -l　注销当前用户 </span><br><span class="line">shutdown -r　关机并重启 </span><br><span class="line">shutdown -s -t 时间　设置关机倒计时 </span><br><span class="line">shutdown -c "+messages"</span><br></pre></td></tr></table></figure>
     </div>
 
-    <!--<div class="excerpt">-->
-      <!---->
-    <!--</div>-->
-  </a>
+    <div>全文完。</div>
+  </article>
+  <div class="toc-container">
+    
 
+  </div>
 </div>
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/2020/12/12/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AE-Centos-NAT%E6%A8%A1%E5%BC%8F/" rel="next" title="虚拟机配置 Centos NAT模式">
+          虚拟机配置 Centos NAT模式
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/2020/12/12/cmder%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="prev" title="cmder中文乱码解决方案">
+            cmder中文乱码解决方案
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
 
-
-  </div></section>
 
     </div>
 

@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/07/03/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>去掉 win10 磁盘盘符重复显示</title>
+    <url>/2020/07/09/%E5%8E%BB%E6%8E%89win10%E7%A3%81%E7%9B%98%E7%9B%98%E7%AC%A6%E9%87%8D%E5%A4%8D%E6%98%BE%E7%A4%BA/</url>
+    <content><![CDATA[<p><strong>1、</strong> 快捷键<code>win+R</code>进入运行窗口，然后输入<code>regedit</code>，在地址栏输入<code>计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders</code>，即可定位到显示磁盘盘符的位置</p>
+<p><img src="/images/2020/07/09/54861000.jpg" alt=""></p>
+<hr>
+<p><strong>2、</strong> 然后把<code>{F5FB2C77-0E2F-4A16-A381-3E560C68BC83}</code>项重命名，在前面加了减号“-”就是改成<code>-{F5FB2C77-0E2F-4A16-A381-3E560C68BC83}</code>即可，如图所示：</p>
+<p><img src="/images/2020/07/09/54986000.jpg" alt=""></p>
+<p>再次查看资源管理器，发现重复的盘符已经消失了</p>
+<p><img src="/images/2020/07/09/55016000.jpg" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>windows 配置java环境变量</title>
+    <url>/2020/12/11/windows-%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</url>
+    <content><![CDATA[<p><strong>变量设置参数如下：</strong></p>
+<p>变量名：<code>JAVA_HOME</code><br>变量值：<code>C:\Programs\Java\jdk1.8.0_171</code></p>
+<p>变量名：<code>CLASSPATH</code><br>变量值：<code>.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;</code></p>
+<p>变量名：<code>Path</code><br>变量值：<code>%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</code></p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows 10 隐藏本地磁盘</title>
+    <url>/2020/12/11/windows-10-%E9%9A%90%E8%97%8F%E6%9C%AC%E5%9C%B0%E7%A3%81%E7%9B%98/</url>
+    <content><![CDATA[<p>1、<strong>打开本地组策略编辑器</strong></p>
+<p><code>crtl+R -&gt; gpedit.msc -&gt; 用户配置 -&gt; 管理模板 -&gt; Windows组件 -&gt; 文件资源管理器</code></p>
+<p><img src="/images/2020/12/11/77386000.jpg" alt=""></p>
+<hr>
+<p>2、在文件资源管理器中找到 <code>隐藏‘我的电脑’中的这些指定的驱动器</code>，双击打开。<br>先点击选择“已启用”，然后点击<code>选择下列组合的一个</code>,选择“仅限制驱动器A 和 B”，最后点击<code>确定</code>就OK了。<br><strong>这样在完成上述操作后，A和B盘在电脑中便不会显示，如果要隐藏其他的只需选择其他选项即可，如果要恢复显示，只要取消隐藏或者禁用。</strong></p>
+<p><img src="/images/2020/12/11/77528000.jpg" alt=""></p>
+]]></content>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tomcat在centos启动缓慢解决</title>
+    <url>/2020/12/12/tomcat%E5%9C%A8centos%E5%90%AF%E5%8A%A8%E7%BC%93%E6%85%A2%E8%A7%A3%E5%86%B3/</url>
+    <content><![CDATA[<p> 在<code>$TOMCAT_HOME/bin/catalina.sh</code>最前面加一句</p>
+<pre><code>if [[ &quot;$JAVA_OPTS&quot; != *-Djava.security.egd=* ]]; then
+    JAVA_OPTS=&quot;$JAVA_OPTS -Djava.security.egd=file:/dev/urandom&quot;
+fi</code></pre>]]></content>
+  </entry>
+  <entry>
+    <title>在centos环境下搭建JDK环境</title>
+    <url>/2020/12/12/%E5%9C%A8centos%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAJDK%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<p><strong>1、上传、解压</strong></p>
+<p><code>tar -zxvf jdk-8u151-linux-x64.tar.gz</code></p>
+<hr>
+<p><strong>2、设置环境变量</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">vi /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 方案1 java environment</span></span><br><span class="line">JAVA_HOME=/home/jdk/jdk1.8.0_151</span><br><span class="line">JRE_HOME=/home/jdk/jdk1.8.0_151/jre</span><br><span class="line">CLASS_PATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib</span><br><span class="line">PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin</span><br><span class="line">export JAVA_HOME JRE_HOME CLASS_PATH PATH</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 方案2 jdk</span></span><br><span class="line">export JAVA_HOME=/home/husen/jdk/jdk1.8.0_181</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>3、生效</strong></p>
+<p><code>source /etc/profile</code></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>windows设置软件开机启动</title>
+    <url>/2020/12/12/windows%E8%AE%BE%E7%BD%AE%E8%BD%AF%E4%BB%B6%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/</url>
+    <content><![CDATA[<p><strong>1.打开windows资源管理</strong>，在地址栏输入以下链接</p>
+<p><code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp</code></p>
+<hr>
+<p><strong>2.将该应用程序的快捷方式放在当前目录下即可</strong></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Vmware CentOS 安装 VMware Tools 设置共享文件夹</title>
+    <url>/2020/12/12/Vmware-CentOS-%E5%AE%89%E8%A3%85-VMware-Tools-%E8%AE%BE%E7%BD%AE%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9/</url>
+    <content><![CDATA[<p><strong>1、更新系统</strong></p>
+<p><code>yum -y update</code></p>
+<hr>
+<p><strong>2、安装相应的依赖</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install -y perl</span><br><span class="line">yum install -y net-tools</span><br><span class="line">yum install -y gcc</span><br><span class="line">yum install -y kernel-headers</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p>*<em>3、安装 VMware Tools *</em></p>
+<pre><code>在相应的系统上右键-&gt;安装 VMware Tools </code></pre><p>切换到<code>root</code>用户，运行以下命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 创建目录</span></span><br><span class="line">mkdir /mnt/cdrom</span><br><span class="line"><span class="meta">#</span><span class="bash"> 挂载光驱</span></span><br><span class="line">mount /dev/cdrom /mnt/cdrom</span><br><span class="line">cd /mnt/cdrom</span><br><span class="line">cp VMwareTools-9.10.5-2981885.tar.gz /tmp</span><br><span class="line">cd /tmp</span><br><span class="line">tar -zxvf VMwareTools-9.10.5-2981885.tar.gz</span><br><span class="line">cd vmware-tools-distrib</span><br><span class="line">./vmware-install.pl</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">若再以下类似报错，可试试</span></span><br><span class="line"><span class="meta">#</span><span class="bash">The path <span class="string">""</span> is not a valid path to the `3.10.0-229.el7.x86_64` kernel headers.</span></span><br><span class="line">yum install kernel-devel</span><br></pre></td></tr></table></figure>
+
+<p>接着一路回车（默认yes）即可，完成后<code>reboot</code></p>
+<hr>
+<p><strong>4、设置共享文件夹</strong></p>
+<p>在相应的系统上<code>右键-&gt;设置</code></p>
+<p><img src="/images/2020/12/12/74777000.png" alt=""></p>
+<p>选择<code>选项</code>，设置启用<code>文件夹共享</code>，然后点击<code>添加</code>，选择需要共享的文件夹，然后就可以在共享文件夹里放置需要共享的文件。</p>
+<p><img src="/images/2020/12/12/74808000.png" alt=""></p>
+<p>重启虚拟机，在<code>/mnt/hgfs</code>目录下可以看到共享的文件夹</p>
+<p><strong>Enjoy it!</strong></p>
+]]></content>
+      <tags>
+        <tag>Centos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>删除centos 更新后多余的启动项</title>
+    <url>/2020/12/12/%E5%88%A0%E9%99%A4centos-%E6%9B%B4%E6%96%B0%E5%90%8E%E5%A4%9A%E4%BD%99%E7%9A%84%E5%90%AF%E5%8A%A8%E9%A1%B9/</url>
+    <content><![CDATA[<p>在CentOS更新后,并不会自动删除旧内核。所以在启动选项中会有多个内核选项,可以手动使用以下命令删除多余的内核:</p>
+<hr>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看系统当前内核版本:</span></span><br><span class="line">uname -a</span><br><span class="line"></span><br><span class="line">Linux localhost.localdomain 2.6.32-696.18.7.el6.x86_64 #1 SMP Thu Jan 4 17:31:22 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看系统中全部的内核RPM包:</span></span><br><span class="line">rpm -qa | grep kernel</span><br><span class="line"></span><br><span class="line">dracut-kernel-004-409.el6_8.2.noarch</span><br><span class="line">abrt-addon-kerneloops-2.0.8-43.el6.centos.x86_64</span><br><span class="line">kernel-2.6.32-696.18.7.el6.x86_64</span><br><span class="line">kernel-headers-2.6.32-696.18.7.el6.x86_64</span><br><span class="line">libreport-plugin-kerneloops-2.0.9-33.el6.centos.x86_64</span><br><span class="line">kernel-firmware-2.6.32-696.18.7.el6.noarch</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除旧内核的RPM包</span></span><br><span class="line">yum remove kernel--2.6.32-696.el6</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启系统</span></span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Centos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows10 配置 Java+Maven环境变量</title>
+    <url>/2020/12/12/windows10-%E9%85%8D%E7%BD%AE-Java-Maven%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</url>
+    <content><![CDATA[<p><strong>1、Java 环境变量</strong></p>
+<p><code>不使用%JAVA_HOME%，防止出错</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">名称：JAVA_HOME</span><br><span class="line">值：C:\Programs\Java\jdk1.8.0_171</span><br><span class="line"></span><br><span class="line">Path ：</span><br><span class="line">C:\Programs\Java\jdk1.8.0_151\bin;C:\Programs\Java\jdk1.8.0_151\jre\bin;</span><br><span class="line"></span><br><span class="line">CLASSPATH ： </span><br><span class="line">.;C:\Programs\Java\jdk1.8.0_151\lib\dt.jar;C:\Programs\Java\jdk1.8.0_151\lib\tools.jar;</span><br></pre></td></tr></table></figure>
+
+<p><code>测试</code><br>    在cmd下输入 <code>java -version</code> <code>java</code> <code>javac</code>，都有输出则成功，特别是javac，一定要有输出！</p>
+<hr>
+<p><strong>2、Maven 环境变量</strong></p>
+<p><code>M2_HOME和MAVEN_HOME两个都需要，有的项目会用到</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">M2_HOME ： C:\Programs\Java\apache-maven-3.5.2</span><br><span class="line">MAVEN_HOME ： C:\Programs\Java\apache-maven-3.5.2</span><br><span class="line">Path ：C:\Programs\Java\apache-maven-3.5.2\bin</span><br></pre></td></tr></table></figure>
+
+<p><code>测试</code><br>    在cmd下输入<code>mvn -v</code>，有输出即可</p>
+]]></content>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>虚拟机配置 Centos NAT模式</title>
+    <url>/2020/12/12/%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AE-Centos-NAT%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<p><strong>1、配置vmware</strong></p>
+<pre><code>在VMware里，依次点击”编辑“ - ”虚拟网络编辑器“</code></pre><p><img src="/images/2020/12/12/58479000.png" alt=""></p>
+<pre><code>选择更改设置，然后就可以修改</code></pre><p><img src="/images/2020/12/12/58587000.png" alt=""></p>
+<pre><code>修改一下几个地方
+1）选择NAT模式
+2）选择NAT模式
+3）设置子网IP和子网掩码（子网IP与宿主机的ip一定不能处在同一地址范围里，否则就算虚拟机能上网，网络既慢，还不稳定。）
+4）NAT设置（设置网关，一般默认即可）</code></pre><p><img src="/images/2020/12/12/58636000.png" alt=""></p>
+<p><img src="/images/2020/12/12/58702000.png" alt=""></p>
+<hr>
+<p><strong>2、设置虚拟机系统的模式为NAT模式</strong></p>
+<p>以下两个二选一即可</p>
+<p><img src="/images/2020/12/12/62575000.jpg" alt=""></p>
+<p><img src="/images/2020/12/12/62586000.jpg" alt=""></p>
+<hr>
+<p><strong>3、配置网卡配置文件</strong></p>
+<pre><code>修改 `/etc/sysconfig/network-scripts/ifcfg-ens××`文件，这里的××具体不一样。
+（类似ifcfg-*之类的文件）</code></pre><p>修改和添加如下信息：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">BOOTPROTO=static #原始值“dhcp”，改为“static”</span><br><span class="line">IPADDR=192.168.186.11 #添加NAT上网的静态IP地址</span><br><span class="line">NETMASK=255.255.255.0 #添加子网掩码</span><br><span class="line">GATEWAY=192.168.186.2 #添加网关，根据VMware 软件‘虚拟网络编辑器’中的子网配置</span><br><span class="line">DNS1=192.168.186.2 #添加首选DNS服务器，和网关一致</span><br><span class="line">DNS2=8.8.8.8 #添加备用DNS服务器（可不填）</span><br><span class="line">ONBOOT=yes #原始值“no”，改为“yes”，意为网卡eth0随开机启动</span><br></pre></td></tr></table></figure>
+
+<p>修改后完整配置文件如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">TYPE=Ethernet</span><br><span class="line">BOOTPROTO=static</span><br><span class="line">DEFROUTE=yes</span><br><span class="line">PEERDNS=yes</span><br><span class="line">PEERROUTES=yes</span><br><span class="line">IPV4_FAILURE_FATAL=no</span><br><span class="line">IPV6INIT=yes</span><br><span class="line">IPV6_AUTOCONF=yes</span><br><span class="line">IPV6_DEFROUTE=yes</span><br><span class="line">IPV6_PEERDNS=yes</span><br><span class="line">IPV6_PEERROUTES=yes</span><br><span class="line">IPV6_FAILURE_FATAL=no</span><br><span class="line">IPV6_ADDR_GEN_MODE=stable-privacy</span><br><span class="line">NAME=ens33</span><br><span class="line">UUID=09423380-5f41-4ebf-8734-7297b547af10</span><br><span class="line">DEVICE=ens33</span><br><span class="line">ONBOOT=yes</span><br><span class="line">ZONE=</span><br><span class="line">GATEWAY=192.168.186.2</span><br><span class="line">IPADDR=192.168.186.11</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">DNS1=192.168.186.2</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p><strong>4、重启（服务）生效</strong></p>
+<p><code>/etc/init.d/network restart</code> 或者<code>service network restart</code>或者<code>reboot</code> 即可生效</p>
+<hr>
+<p><strong>5、测试结果</strong></p>
+<p>主机 ping 虚拟机 -&gt; 在电脑cmd命令行下 ping 192.168.186.11<br>虚拟机 ping 主机 -&gt; 在centos中 ping 192.168.186.1<br>虚拟机 ping 百度 -&gt; 在centos中 ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p>
+<hr>
+<p><strong>6、解决虚拟机ping不通主机，但是主机可以ping通虚拟机</strong></p>
+<p>打开<code>防火墙</code>-&gt;<code>选择高级设置</code>-&gt;<code>入站规则</code>-&gt;<code>找到配置文件类型为“公用”的“文件和打印共享（回显请求 – ICMPv4-In）”规则</code>，设计启用并允许。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>手动在电脑桌面制作关机/重启图标并添加到任务栏</title>
+    <url>/2020/12/12/%E6%89%8B%E5%8A%A8%E5%9C%A8%E7%94%B5%E8%84%91%E6%A1%8C%E9%9D%A2%E5%88%B6%E4%BD%9C%E5%85%B3%E6%9C%BA-%E9%87%8D%E5%90%AF%E5%9B%BE%E6%A0%87%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%88%B0%E4%BB%BB%E5%8A%A1%E6%A0%8F/</url>
+    <content><![CDATA[<p>*<em>1、在桌面右键 -&gt; 新建快捷方式 *</em></p>
+<p><img src="/images/2020/12/12/28662000.png" alt=""></p>
+<hr>
+<p><strong>2、在弹出的向导中输入以下内容</strong></p>
+<p><code>C:\Windows\System32\shutdown.exe -s -t 3 -c &quot;电脑3秒后关机！&quot;</code></p>
+<p>其中-s代表关机，-t代表几秒后关机，-t后面的数字为具体时间，-c后面后关机提示内容。</p>
+<p><img src="/images/2020/12/12/28738000.png" alt=""></p>
+<hr>
+<p><strong>3、选择下一步，输入快捷方式名称，然后确定</strong></p>
+<p><img src="/images/2020/12/12/28835000.png" alt=""></p>
+<hr>
+<p><strong>4、这时候快捷方式还没有图标，比较难看。在快捷方式上右键 -&gt; 属性 -&gt; 更改图标，可以选择一个系统图标，或者自定义图标</strong></p>
+<p><img src="/images/2020/12/12/29250000.png" alt=""></p>
+<hr>
+<p><strong>5、最后将图标右键添加到任务栏，然后删除快捷方式即可</strong></p>
+<p><img src="/images/2020/12/12/29308000.png" alt=""></p>
+<hr>
+<p><strong>6、在快捷方式右键 -&gt; 属性 中还可以修改刚刚设置的参数，将-s改为-r，就是重启了</strong></p>
+<p><img src="/images/2020/12/12/29341000.png" alt=""></p>
+<hr>
+<p><strong>特别的：更多cmd shutdown参数如下，这些参数也可以直接加到前面的<code>目标</code>属性中</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">shutdown -a　取消关机 s </span><br><span class="line">shutdown -s 关机 </span><br><span class="line">shutdown -f　强行关闭应用程序 </span><br><span class="line">shutdown -m \\计算机名　控制远程计算机 </span><br><span class="line">shutdown.-i　显示图形用户界面，但必须是Shutdown的第一个参数 </span><br><span class="line">shutdown -l　注销当前用户 </span><br><span class="line">shutdown -r　关机并重启 </span><br><span class="line">shutdown -s -t 时间　设置关机倒计时 </span><br><span class="line">shutdown -c "+messages"</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>cmder中文乱码解决方案</title>
+    <url>/2020/12/12/cmder%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<p><strong>1、打开cmder，在右下角选择<code>菜单-&gt;setting</code>，或者快捷键 <code>win+alt+P</code></strong></p>
+<p><img src="/images/2020/12/12/47053000.png" alt=""></p>
+<hr>
+<p><strong>2、在<code>Environment</code>里添加<code>set LANG=zh_CN.UTF-8</code>，然后重启即可</strong></p>
+<p><img src="/images/2020/12/12/47063000.png" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>CentOS 7 搭建Maven</title>
+    <url>/2020/12/12/CentOS-7-%E6%90%AD%E5%BB%BAMaven/</url>
+    <content><![CDATA[<p><strong>1、选择要放maven的位置，下载安装包</strong></p>
+<p><code>wget http://mirror.bit.edu.cn/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz</code></p>
+<hr>
+<p><strong>2、解压在当前目录，记住当前目录路径</strong></p>
+<p><code>tar -zxvf apache-maven-3.5.2-bin.tar.gz</code></p>
+<hr>
+<p><strong>3、配置环境变量</strong></p>
+<p><code>vi /etc/profile</code></p>
+<p>在文件末尾添加</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">M2_HOME=第2步中的路径</span><br><span class="line">export PATH=$&#123;M2_HOME&#125;/bin:$&#123;PATH&#125;</span><br></pre></td></tr></table></figure>
+<p>重载生效</p>
+<p><code>source /etc/profile</code></p>
+<hr>
+<p><strong>4、检查是否生效</strong></p>
+<p><code>mvn -v</code></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>windows 10/8/7 和 CentOS 7 双系统并设置默认windows启动</title>
+    <url>/2020/12/12/windows-10-8-7-%E5%92%8C-CentOS-7-%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%B9%B6%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4windows%E5%90%AF%E5%8A%A8/</url>
+    <content><![CDATA[<p><strong>安装结果：</strong></p>
+<pre><code>windows pro 64位
+centos 7 dvd 64位</code></pre><h2 id="​"><a href="#​" class="headerlink" title="​    "></a>​    </h2><p><strong>准备工作：</strong></p>
+<pre><code>安装好的windows系统（最好先安装windows，因为后安装的centos会覆盖windows启动项，我们会在centos里恢复windows启动项）
+去centos官网下载最新的centos7 dvd
+U盘（最好8G以上）
+UltraISO 最新版（制作启动U盘）
+在windows上准备（压缩）30G左右空间</code></pre><hr>
+<p><strong>1、制作启动U盘</strong><br>    百度下载并安装UltraISO最新版，选择试用。Crtl+O（或者 文件-&gt; 打开）打开下载好的centos7系统镜像。如下图：<br><img src="/images/2020/12/12/52662000.png" alt=""></p>
+<p><img src="/images/2020/12/12/52671000.png" alt=""></p>
+<pre><code>然后插入准备好的U盘，备份U盘里的数据（后面的操作会格式化U盘）。然后在菜单栏选择 启动 -&gt; 写入硬盘镜像</code></pre><p><img src="/images/2020/12/12/52838000.png" alt=""></p>
+<pre><code>硬盘驱动器就是U盘，映像文件默认加载，其余默认，点击`写入`就开始制作</code></pre><p><img src="/images/2020/12/12/52853000.png" alt=""></p>
+<p>​    </p>
+<hr>
+<p><strong>2、安装centos系统</strong><br>    重启电脑，进入Bios设置使用U盘启动。此处不会的可百度。启动完成之后，选择第一项<code>Install centos7</code></p>
+<p><img src="/images/2020/12/12/53040000.png" alt=""></p>
+<pre><code>此处若进入选择语言界面，则说明一切正常，直接看第3步。否则进入grub界面，需要继续设置。原因是没有找到安装项。
+下方的提示信息将显示为
+vmlinuz initrd=initrd.img inst.stage2=hd:LABEL=CentOSx207x20x86_64 rd.live.check quiet
+移动光标，删除 
+LABEL=CentOSx207x20x86_64 rd.live.check 这部分，并用 linux dd 替换，最终的内容为
+vmlinuz initrd=initrd.img linux dd quiet
+稍后会出现一系列代码，依据你的优盘名称记下对应 DEVICE 列的值，一般是 sdb4 
+强制关闭计算机后再开机，按照上述步骤，按 Tab 键，修改启动参数，这次修改为 
+vmlinuz initrd=initrd.img inst.stage2=hd:/dev/sdb4 
+即可进入安装步骤</code></pre><p>​    </p>
+<hr>
+<p><strong>3、配置centos安装（手动分区）</strong></p>
+<pre><code>参考教程 [配置centos安装费（手动分区）](http://www.linuxidc.com/Linux/2016-06/132051p3.htm &quot;配置centos安装费（手动分区）&quot;)</code></pre><p>​    </p>
+<hr>
+<p><strong>4、修复windwos启动项</strong></p>
+<pre><code>centos安装完成之后，会覆盖windows的启动项，这时候，只有一个centos启动项。我们在centos里面恢复windows的启动项，并设置6秒后默认启动windows。</code></pre><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">在root账户下 </span><br><span class="line">cp /etc/grub.d/40_custom /etc/grub.d/40_custom_bk #备份</span><br><span class="line">vi /etc/grub.d/40_custom</span><br><span class="line"><span class="meta">#</span><span class="bash">打开文件后，按i编辑，在文档内加入</span></span><br><span class="line"></span><br><span class="line">menuentry 'Windows 10'&#123;</span><br><span class="line">	set root=(hd0,1)</span><br><span class="line">	chainloader +1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">记住此处windows的名称Windows 10，用作后面修改默认启动项</span></span><br><span class="line"><span class="meta">#</span><span class="bash">保存退出后</span></span><br><span class="line">grub2-mkconfig -o /boot/grub2/grub.cfg</span><br><span class="line"><span class="meta">#</span><span class="bash"> 然后reboot就可以看到windows启动项了，此时默认启动项是centos</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 此处先不重启，接着输入。或者重启后进入root账户</span></span><br><span class="line">cp /etc/default/grub /etc/default/grub_bk #备份</span><br><span class="line">vim /etc/default/grub</span><br><span class="line"><span class="meta">#</span><span class="bash">注释掉GRUB_DEFAULT=saved</span></span><br><span class="line"><span class="meta">#</span><span class="bash">在这一行的下面插入GRUB_DEFAULT=’Windows 10’，保存并退出。</span></span><br><span class="line"><span class="meta">#</span><span class="bash">此处的windows 10 是前面取的名字，两处只要一致即可</span></span><br><span class="line">grub2-mkconfig --output=/boot/grub2/grub.cfg</span><br><span class="line"><span class="meta">#</span><span class="bash">执行上面一步生效</span></span><br><span class="line"><span class="meta">#</span><span class="bash">reboot可以看到电脑启动后光标默认在windows上，如果这时不做选择则自启动的是windows</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong><br>    网上还有一种用EasyBCD制作启动项的，这个容易报错，进入centos会进入grub界面，我试了几次都没成功，按照网上的方法找不到启动盘，centos下的分区显示为Unknown disk.虽然这种方法在项目系统的界面比较好看，但是有一个系统会重启计算机再启动。相当于在选择的时候已经默认启动了一个系统（一般为windows）。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>centos 下访问 windows NTFS 分区</title>
+    <url>/2020/12/12/centos-%E4%B8%8B%E8%AE%BF%E9%97%AE-windows-NTFS-%E5%88%86%E5%8C%BA/</url>
+    <content><![CDATA[<p><strong>1、下载安装</strong></p>
+<p><a href="https://www.hemingsheng.cn/file/download.hms?filename=ntfs-3g_ntfsprogs-2017.3.23.tgz" target="_blank" rel="noopener" title="点击下载">点击下载ntfs-3g_ntfsprogs-2017.3.23.tgz</a></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line">tar xzvf ntfs-3g-***.tar.gz</span><br><span class="line"></span><br><span class="line">cd ntfs-3g-***</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 编译安装</span></span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 如果有如下错误</span></span></span><br><span class="line">configure: error: in `/home/husen/Downloads/ntfs-3g_ntfsprogs-2017.3.23':</span><br><span class="line">configure: error: no acceptable C compiler found in $PATH</span><br><span class="line">See `config.log' for more details</span><br><span class="line"></span><br><span class="line">yum -y install gcc</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p><strong>2、手动挂在NTFS分区</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看当前所有磁盘分区类型</span></span><br><span class="line"> fdisk -l</span><br><span class="line"><span class="meta"> #</span><span class="bash"> 手动挂载</span></span><br><span class="line"> mount -t ntfs-3g /dev/sda1 /ntfs</span><br><span class="line"><span class="meta">#</span><span class="bash"> 手动卸载</span></span><br><span class="line">umount /dev/sda1</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p><strong>3、自动挂载</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 备份</span></span><br><span class="line">cp /etc/fstab /etc/fstab_bk</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 编辑</span></span><br><span class="line">vi /etc/fstab #编辑</span><br><span class="line"></span><br><span class="line">在最后添加以下信息，以读写方式挂载磁盘</span><br><span class="line"></span><br><span class="line">/dev/sda5    /ntfs/c-winos   defaults  0  0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">:wq!保存，退出</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输入命令生效生效</span></span><br><span class="line">mount -a</span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者重启</span></span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>linux系统rwx（421）、777权限详解</title>
+    <url>/2020/12/12/linux%E7%B3%BB%E7%BB%9Frwx%EF%BC%88421%EF%BC%89%E3%80%81777%E6%9D%83%E9%99%90%E8%AF%A6%E8%A7%A3/</url>
+    <content><![CDATA[<p><strong>常用的linux文件权限如下：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">444 r--r--r--</span><br><span class="line">600 rw-------</span><br><span class="line">644 rw-r--r--</span><br><span class="line">666 rw-rw-rw-</span><br><span class="line">700 rwx------</span><br><span class="line">744 rwxr--r--</span><br><span class="line">755 rwxr-xr-x</span><br><span class="line">777 rwxrwxrwx</span><br></pre></td></tr></table></figure>
+
+<hr>
+<pre><code>从左至右，先是3个数字，代表文件的权限
+然后是9个字母（或者连字符）
+其中 1-3位数字代表文件所有者的权限
+4-6位数字代表同组用户的权限
+7-9数字代表其他用户的权限
+
+而具体的权限是由数字来表示的
+读取的权限等于4，用r表示
+写入的权限等于2，用w表示
+执行的权限等于1，用x表示
+通过4、2、1的组合，得到以下几种权限：
+0（没有权限）；4（读取权限）；5（4+1 | 读取+执行）；6（4+2 | 读取+写入）；7（4+2+1 | 读取+写入+执行）</code></pre><hr>
+<h6 id="以754为例："><a href="#以754为例：" class="headerlink" title="以754为例："></a>以754为例：</h6><p>1-3位7等于4+2+1，rwx，所有者具有读取、写入、执行权限；<br>4-6位5等于4+1+0，r-x，同组用户具有读取、执行权限但没有写入权限；<br>7-9位4，其他用户具有读取但没有写入权限和执行权限</p>
+<hr>
+<p><strong>改变文件权限命令</strong></p>
+<p><code>chmod 权限数字（如777） filename</code></p>
+<p><strong>改变目录下所有的文件的权限命令</strong></p>
+<p><code>chmod -R 权限数字（如777） 目录(如/home)</code></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>腾讯云 centos7设置Tomcat8.5开机自启动</title>
+    <url>/2020/12/12/%E8%85%BE%E8%AE%AF%E4%BA%91-centos7%E8%AE%BE%E7%BD%AETomcat8-5%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/</url>
+    <content><![CDATA[<ol>
+<li><p><code>cd /etc/init.d</code></p>
+</li>
+<li><p><code>vi tomcat8</code></p>
+</li>
+<li><p>粘贴自启动命令 注意替换自己的Java环境变量和 TOMCAT的HOME</p>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash        </span></span><br><span class="line"><span class="meta">#</span><span class="bash">        </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> tomcat startup script <span class="keyword">for</span> the Tomcat server        </span></span><br><span class="line"><span class="meta">#</span><span class="bash">        </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> chkconfig: 345 80 20        </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> description: start the tomcat deamon        </span></span><br><span class="line"><span class="meta">#</span><span class="bash">        </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Source <span class="keyword">function</span> library        </span></span><br><span class="line">. /etc/rc.d/init.d/functions        </span><br><span class="line">        </span><br><span class="line">prog=tomcat8       </span><br><span class="line">JAVA_HOME=/opt/jdk1.8.0_40      </span><br><span class="line">export JAVA_HOME        </span><br><span class="line">CATALANA_HOME=/opt/apache-tomcat-8.0.20/      </span><br><span class="line">export CATALINA_HOME        </span><br><span class="line">        </span><br><span class="line">case "$1" in        </span><br><span class="line">start)        </span><br><span class="line">    echo "Starting Tomcat..."        </span><br><span class="line">    $CATALANA_HOME/bin/startup.sh        </span><br><span class="line">    ;;        </span><br><span class="line">        </span><br><span class="line">stop)        </span><br><span class="line">    echo "Stopping Tomcat..."        </span><br><span class="line">    $CATALANA_HOME/bin/shutdown.sh        </span><br><span class="line">    ;;        </span><br><span class="line">        </span><br><span class="line">restart)        </span><br><span class="line">    echo "Stopping Tomcat..."        </span><br><span class="line">    $CATALANA_HOME/bin/shutdown.sh        </span><br><span class="line">    sleep 2        </span><br><span class="line">    echo        </span><br><span class="line">    echo "Starting Tomcat..."        </span><br><span class="line">    $CATALANA_HOME/bin/startup.sh        </span><br><span class="line">    ;;        </span><br><span class="line">        </span><br><span class="line">*)        </span><br><span class="line">    echo "Usage: $prog &#123;start|stop|restart&#125;"        </span><br><span class="line">    ;;        </span><br><span class="line">esac        </span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>4.保存退出<br>5.<code>chmod 755 tomcat8</code> 赋权限<br>6.<code>service tomcat8 start</code> 启动检查<br>7.<code>chkconfig tomcat8 on</code></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>linux  配置 redis 3.0.6 并进行简单测试</title>
+    <url>/2020/12/12/linux-%E9%85%8D%E7%BD%AE-redis-3-0-6-%E5%B9%B6%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<p>1、下载redis GZ压缩包，<a href="http://download.redis.io/releases/redis-3.0.6.tar.gz" target="_blank" rel="noopener" title="点击下载">点击下载</a></p>
+<p>2、tar解压</p>
+<p><code>tar -zxf redis-3.0.6.tar.gz</code> </p>
+<p>3、进入解压后的redis文件夹，编译</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd redis-3.0.6  </span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+
+
+<p>4、然后测试，出现以下界面，则测试通过</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">make test  ##这一步比较久</span><br></pre></td></tr></table></figure>
+
+<p>（截图忘记保存了…………..反正就是都OK）<br>5、接着开始安装，这个时候需要切换到root用户</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+
+
+<p>6、接着再当前目录下执行以下命令，启动redis，出现以下界面说明启动成功</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">src/redis-server</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>7、重新打开另外一个终端，再次测试是否安装成功。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">cd redis-3.0.6/  </span><br><span class="line">src/redis-cli</span><br></pre></td></tr></table></figure>
+
+<p><strong>出现 redis127.0.0.1:6379&gt;， 说明配置成功</strong></p>
+<p><strong>接着输入</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">set myname husen</span><br><span class="line">get myname</span><br></pre></td></tr></table></figure>
+<p><strong>输出结果为husen</strong></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Java Mail 发送邮件实例</title>
+    <url>/2020/12/12/Java-Mail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E5%AE%9E%E4%BE%8B/</url>
+    <content><![CDATA[<p>首先下载<code>javax.mail.jar</code>包，[点击下载]<br>(<a href="https://github.com/javaee/javamail/releases" target="_blank" rel="noopener">https://github.com/javaee/javamail/releases</a>)</p>
+<p><strong>注意：</strong><br>不需要下载<code>activation.jar</code>，JDK1.5以后这个jar包已经集成到JDK了，亲测有效。</p>
+<hr>
+<p><strong><em>代码如下：</em></strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> pers.husen.sendemail;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.UnsupportedEncodingException;</span><br><span class="line"><span class="keyword">import</span> java.security.GeneralSecurityException;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.mail.Address;</span><br><span class="line"><span class="keyword">import</span> javax.mail.Authenticator;</span><br><span class="line"><span class="keyword">import</span> javax.mail.Message;</span><br><span class="line"><span class="keyword">import</span> javax.mail.MessagingException;</span><br><span class="line"><span class="keyword">import</span> javax.mail.PasswordAuthentication;</span><br><span class="line"><span class="keyword">import</span> javax.mail.Session;</span><br><span class="line"><span class="keyword">import</span> javax.mail.Transport;</span><br><span class="line"><span class="keyword">import</span> javax.mail.internet.InternetAddress;</span><br><span class="line"><span class="keyword">import</span> javax.mail.internet.MimeMessage;</span><br><span class="line"><span class="keyword">import</span> com.sun.mail.util.MailSSLSocketFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SendEmail</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">// 建立属性对象</span></span><br><span class="line">			Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">			<span class="comment">// 开启SSL</span></span><br><span class="line">			MailSSLSocketFactory sf = <span class="keyword">new</span> MailSSLSocketFactory();</span><br><span class="line">			sf.setTrustAllHosts(<span class="keyword">true</span>);</span><br><span class="line">			<span class="comment">// 开启认证</span></span><br><span class="line">			properties.put(<span class="string">"mail.smtp.auth"</span>, <span class="string">"true"</span>);</span><br><span class="line">			<span class="comment">// 开启SSL</span></span><br><span class="line">			properties.put(<span class="string">"mail.smtp.ssl.enable"</span>, <span class="string">"true"</span>);</span><br><span class="line">			properties.put(<span class="string">"mail.smtp.ssl.socketFactory"</span>, sf);</span><br><span class="line">			<span class="comment">// 设置邮件服务器主机名</span></span><br><span class="line">			properties.setProperty(<span class="string">"mail.host"</span>, <span class="string">"smtp.qq.com"</span>);</span><br><span class="line">			<span class="comment">// 设置端口</span></span><br><span class="line">			properties.setProperty(<span class="string">"mail.smtp.port"</span>, <span class="string">"465"</span>);</span><br><span class="line"></span><br><span class="line">			<span class="comment">// 根据认证获取默认session对象</span></span><br><span class="line">			Session session = Session.getDefaultInstance(properties, <span class="keyword">new</span> Authenticator() &#123;</span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> PasswordAuthentication <span class="title">getPasswordAuthentication</span><span class="params">()</span> </span>&#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="keyword">new</span> PasswordAuthentication(<span class="string">"husen@hemingsheng.cn"</span>, <span class="string">"此处填密码（QQ邮箱填授权码）"</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">			<span class="comment">// 创建默认的 MimeMessage 对象</span></span><br><span class="line">			MimeMessage message = <span class="keyword">new</span> MimeMessage(session);</span><br><span class="line">			<span class="comment">// Set From: 头部头字段</span></span><br><span class="line">			message.setFrom(<span class="keyword">new</span> InternetAddress(<span class="string">"husen@hemingsheng.cn"</span>, <span class="string">"何明胜"</span>, <span class="string">"UTF-8"</span>));</span><br><span class="line">			<span class="comment">// 收件人电子邮箱 可用数组设置多个</span></span><br><span class="line">			message.addRecipient(Message.RecipientType.TO, <span class="keyword">new</span> InternetAddress(<span class="string">"1123767053@qq.com"</span>));</span><br><span class="line">			<span class="comment">// 要求阅读回执(收件人阅读邮件时会提示回复发件人,表明邮件已收到,并已阅读)  </span></span><br><span class="line">	        <span class="comment">//message.setHeader("Disposition-Notification-To", "940706904@qq.com");  </span></span><br><span class="line">	        </span><br><span class="line">			<span class="comment">// 设置标题</span></span><br><span class="line">			message.setSubject(<span class="string">"来自测试的邮件标题!"</span>);</span><br><span class="line">			</span><br><span class="line">			<span class="comment">// 设置邮件内容 普通文本</span></span><br><span class="line">			<span class="comment">// message.setText("测试邮件内容");</span></span><br><span class="line">			<span class="comment">// 设置内容 HTML</span></span><br><span class="line">			message.setContent(<span class="string">"邮件内容123"</span>, <span class="string">"text/html;charset=UTF-8"</span>);</span><br><span class="line">			</span><br><span class="line">			<span class="comment">/** 带附件 * */</span></span><br><span class="line">			<span class="comment">/*// 文本内容</span></span><br><span class="line"><span class="comment">			MimeBodyPart contentBodyPart = new MimeBodyPart();</span></span><br><span class="line"><span class="comment">			contentBodyPart.setContent("&lt;p&gt;测试邮件的段落&lt;/p&gt;", "text/html; charset=utf-8");</span></span><br><span class="line"><span class="comment">			// 附件</span></span><br><span class="line"><span class="comment">			MimeBodyPart fileMultiPart = new MimeBodyPart();</span></span><br><span class="line"><span class="comment">			fileMultiPart.setDataHandler(new DataHandler(new FileDataSource(new File("D:\\Desktop\\简历.docx"))));</span></span><br><span class="line"><span class="comment">			// 图片</span></span><br><span class="line"><span class="comment">			MimeBodyPart picMultiPart = new MimeBodyPart();</span></span><br><span class="line"><span class="comment">			picMultiPart.setDataHandler(new DataHandler(new FileDataSource("D:\\Desktop\\logo.png")));</span></span><br><span class="line"><span class="comment">			picMultiPart.setContentID("logo.png");</span></span><br><span class="line"><span class="comment">			// 组合</span></span><br><span class="line"><span class="comment">			MimeMultipart bodyMultipart = new MimeMultipart("mixed");</span></span><br><span class="line"><span class="comment">			bodyMultipart.addBodyPart(contentBodyPart);</span></span><br><span class="line"><span class="comment">			bodyMultipart.addBodyPart(fileMultiPart);</span></span><br><span class="line"><span class="comment">			bodyMultipart.addBodyPart(picMultiPart);</span></span><br><span class="line"><span class="comment">			message.setContent(bodyMultipart);*/</span></span><br><span class="line"></span><br><span class="line">			<span class="comment">// 发送信息的工具</span></span><br><span class="line">			Transport transport = session.getTransport();</span><br><span class="line">			<span class="comment">// 发件人邮箱号和密码 与前面填密码选一处即可</span></span><br><span class="line">			<span class="comment">// transport.connect("940706904@qq.com", "此处填密码");</span></span><br><span class="line">			transport.connect();</span><br><span class="line">			<span class="comment">// 对方的地址</span></span><br><span class="line">			transport.sendMessage(message, <span class="keyword">new</span> Address[] &#123; <span class="keyword">new</span> InternetAddress(<span class="string">"对方的邮箱@qq.com"</span>) &#125;);</span><br><span class="line">			<span class="comment">// 关闭连接</span></span><br><span class="line">			transport.close();</span><br><span class="line">			System.out.println(<span class="string">"Sent message successfully....from console"</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (MessagingException | UnsupportedEncodingException | GeneralSecurityException mex) &#123;</span><br><span class="line">			mex.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>tomcat 修改默认访问项目名称和项目发布路径</title>
+    <url>/2020/12/12/tomcat-%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E8%AE%BF%E9%97%AE%E9%A1%B9%E7%9B%AE%E5%90%8D%E7%A7%B0%E5%92%8C%E9%A1%B9%E7%9B%AE%E5%8F%91%E5%B8%83%E8%B7%AF%E5%BE%84/</url>
+    <content><![CDATA[<p><strong>1、修改项目发布路径</strong></p>
+<p>tomcat默认的而发布路径为     <code>tomcat/webapps/</code>目录，打不死这个目录下有一些默认的项目，在tomcat启动的时候会跟着一起加载。如果不想删除这些项目，可以把tomcat发布的路径修改到其他地方。</p>
+<p>找到<code>tomcat/conf/server.xml</code>文件，修改里面这一行的<code>appBase</code>为其他路径即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;Host name&#x3D;&quot;localhost&quot;  appBase&#x3D;&quot;&#x2F;root&#x2F;webfile&#x2F;webapps&quot; unpackWARs&#x3D;&quot;true&quot; autoDeploy&#x3D;&quot;true&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>其中：</p>
+<ul>
+<li>name是虚拟主机名，对应目录 /conf /Catalina /localhost</li>
+<li>unpackWARs 为是否自动解压war文件，如果设置为true，表示把war文件先展开再运行。如果为false则直接运行war文件</li>
+<li>autoDeploy，默认为true，表示如果有新的WEB应用放入appBase并且Tomcat在运行的情况下，自动载入应用</li>
+</ul>
+<p><em>特地别：</em><br>这里既可以用相对路径，也可以用绝对路径。<br>相对路径默认<code>tomcat</code>目录为根目录</p>
+<hr>
+<p><strong>2、修改默认访问项目</strong></p>
+<p>最简单的，可以直接把项目名称修改为<code>ROOT</code>，放在    <code>tomcat/webapps/</code>目录即可。</p>
+<p>如果不想修改。那么在第1步中的</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;Host name&#x3D;&quot;localhost&quot;  appBase&#x3D;&quot;&#x2F;root&#x2F;webfile&#x2F;webapps&quot; unpackWARs&#x3D;&quot;true&quot; autoDeploy&#x3D;&quot;true&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>下面加上下面这句即可，其中</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 设置默认项目名称 --&gt;</span><br><span class="line">&lt;Context path&#x3D;&quot;&quot; docBase&#x3D;&quot;&#x2F;root&#x2F;webfile&#x2F;web&quot; reloadable&#x3D;&quot;true&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>path</code>代表用浏览器访问的时候的的路径，如<a href="http://localhost:8080/web来访问path=&quot;/web&quot;" target="_blank" rel="noopener">http://localhost:8080/web来访问path=&quot;/web&quot;</a></li>
+<li><code>docBase</code>为你的项目的路径，这里同样既可以用相对路径，也可以用绝对路径。设置好了之后就会把项目自动映射到ROOT</li>
+<li>reloadable，如果这个属性设为true，tomcat服务器在运行状态下会监视在WEB-INF/classes和WEB-INF/lib目录下class文件的改动，如果监测到有class文件被更新的，服务器会自动重新加载Web应用</li>
+</ul>
+<hr>
+]]></content>
+  </entry>
+  <entry>
+    <title>tomcat 配置多域名访问访问同一个网站的相同或者不同项目</title>
+    <url>/2020/12/12/tomcat-%E9%85%8D%E7%BD%AE%E5%A4%9A%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AE%E8%AE%BF%E9%97%AE%E5%90%8C%E4%B8%80%E4%B8%AA%E7%BD%91%E7%AB%99%E7%9A%84%E7%9B%B8%E5%90%8C%E6%88%96%E8%80%85%E4%B8%8D%E5%90%8C%E9%A1%B9%E7%9B%AE/</url>
+    <content><![CDATA[<p>关于证书的申请这里就不多说了，阿里云和腾讯云都可以申请免费的SSL证书，有效期为一年，到期可以再申请。网上搜一下，就可以去申请了。</p>
+<hr>
+<p>然后关于tomcat配置SSL证书的，网上也很多教程，这里推荐腾讯云的官方证书安装指引<a href="https://cloud.tencent.com/document/product/400/4143#4.-tomcat-.E8.AF.81.E4.B9.A6.E9.83.A8.E7.BD.B2" target="_blank" rel="noopener">点击跳转至腾讯云证书安装指引</a></p>
+<hr>
+<p>不过现在的需求是多个域名访问同一个网站，并且多个域名绑定同一IP的。比如我，在腾讯云有一台服务器，解析了两个域名，现在我想让这两个域名能同时以https访问我的网站，可以是访问同一个项目，也可以是访问不同的项目。在参照前面的安装指引完成之后，只能用一个域名访问，而另一个显示证书不安全。</p>
+<p>接下来言归正传。</p>
+<hr>
+<p><strong>1、</strong>首先将申请好的证书下载解压。如下图：</p>
+<p><img src="https://www.hemingsheng.cn/imageDownload.hms?imageUrl=20180115/39403000.jpg" alt=""></p>
+<p>在tomcat文件夹下有两个文件，一个是密码，一个是证书，后面我们都需要。</p>
+<p><strong>注意：</strong> 需要分别给两个域名申请证书！</p>
+<hr>
+<p><strong>2、</strong> 编辑<code>tomcat/conf</code> 文件夹下的 <code>server.xml</code>文件，一共修改两处，其他地方都不变。首先修改第一个地方。这里声明了两个主机(host)</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 第1处 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">"443"</span> <span class="attr">protocol</span>=<span class="string">"org.apache.coyote.http11.Http11NioProtocol"</span> <span class="attr">maxThreads</span>=<span class="string">"150"</span> <span class="attr">SSLEnabled</span>=<span class="string">"true"</span> <span class="attr">defaultSSLHostConfigName</span>=<span class="string">"www.hemingsheng.cn"</span> &gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">SSLHostConfig</span> <span class="attr">hostName</span>=<span class="string">"www.hemingsheng.cn"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">Certificate</span> <span class="attr">certificateKeystoreFile</span>=<span class="string">"/home/key_https/Tomcat/www.hemingsheng.cn.jks"</span></span></span><br><span class="line"><span class="tag">				<span class="attr">certificateKeystorePassword</span>=<span class="string">"这里填txt文件中的密码"</span> <span class="attr">type</span>=<span class="string">"RSA"</span> </span></span><br><span class="line"><span class="tag">			/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">SSLHostConfig</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">		<span class="tag">&lt;<span class="name">SSLHostConfig</span> <span class="attr">hostName</span>=<span class="string">"www.tinger.wang"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">Certificate</span> <span class="attr">certificateKeystoreFile</span>=<span class="string">"/home/key_https/Tomcat/www.tinger.wang.jks"</span></span></span><br><span class="line"><span class="tag">				<span class="attr">certificateKeystorePassword</span>=<span class="string">"这里填另一个txt文件中的密码"</span> <span class="attr">type</span>=<span class="string">"RSA"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">SSLHostConfig</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">Connector</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>3、</strong> 如果两个域名访问同一个项目，按照如下修改</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">name</span>=<span class="string">"www.hemingsheng.cn"</span> <span class="attr">appBase</span>=<span class="string">"/root/webfile/webapps"</span> <span class="attr">unpackWARs</span>=<span class="string">"false"</span> <span class="attr">autoDeploy</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">Alias</span>&gt;</span>www.hemingsheng.cn<span class="tag">&lt;/<span class="name">Alias</span>&gt;</span>  </span><br><span class="line">			<span class="tag">&lt;<span class="name">Alias</span>&gt;</span>www.tinger.wang<span class="tag">&lt;/<span class="name">Alias</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 设置默认项目名称 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">""</span> <span class="attr">docBase</span>=<span class="string">"/root/webfile/web"</span> <span class="attr">reloadable</span>=<span class="string">"true"</span> /&gt;</span> </span><br><span class="line">			<span class="tag">&lt;<span class="name">Valve</span> <span class="attr">className</span>=<span class="string">"org.apache.catalina.valves.AccessLogValve"</span> <span class="attr">directory</span>=<span class="string">"logs"</span></span></span><br><span class="line"><span class="tag">				<span class="attr">prefix</span>=<span class="string">"localhost_access_log"</span> <span class="attr">suffix</span>=<span class="string">".txt"</span></span></span><br><span class="line"><span class="tag">				<span class="attr">pattern</span>=<span class="string">"%h %l %u %t <span class="symbol">&amp;quot;</span>%r<span class="symbol">&amp;quot;</span> %s %b"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里的关键在于<code>&lt;Alias&gt;www.hemingsheng.cn&lt;/Alias&gt;</code>，将两个域名主机指向了同一个项目</p>
+<hr>
+<p><strong>4、</strong> 如果要配置两个域名访问不同的项目，则按照如下配置</p>
+<!-- 第2处 -->
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">   这里我两个主机配置了相同的项目，这样修改会实例化两个web项目，虽然两个域名可以访问同一个项目，但是会启动两个虚拟机，不推荐。</span></span><br><span class="line"><span class="comment">   这个访问推荐用来配置两个域名访问两个不同的项目</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">name</span>=<span class="string">"www.hemingsheng.cn"</span>  <span class="attr">appBase</span>=<span class="string">"/root/webfile/webapps"</span> <span class="attr">unpackWARs</span>=<span class="string">"false"</span> <span class="attr">autoDeploy</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 设置默认项目名称 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">""</span> <span class="attr">docBase</span>=<span class="string">"/root/webfile/web"</span> <span class="attr">reloadable</span>=<span class="string">"true"</span> /&gt;</span> </span><br><span class="line">			<span class="tag">&lt;<span class="name">Valve</span> <span class="attr">className</span>=<span class="string">"org.apache.catalina.valves.AccessLogValve"</span> <span class="attr">directory</span>=<span class="string">"logs"</span></span></span><br><span class="line"><span class="tag">               <span class="attr">prefix</span>=<span class="string">"localhost_access_log"</span> <span class="attr">suffix</span>=<span class="string">".txt"</span></span></span><br><span class="line"><span class="tag">               <span class="attr">pattern</span>=<span class="string">"%h %l %u %t <span class="symbol">&amp;quot;</span>%r<span class="symbol">&amp;quot;</span> %s %b"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br><span class="line">	  </span><br><span class="line">	  <span class="tag">&lt;<span class="name">Host</span> <span class="attr">name</span>=<span class="string">"www.tinger.wang"</span>  <span class="attr">appBase</span>=<span class="string">"/root/webfile/webapps"</span> <span class="attr">unpackWARs</span>=<span class="string">"false"</span> <span class="attr">autoDeploy</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 设置默认项目名称 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">""</span> <span class="attr">docBase</span>=<span class="string">"/root/webfile/web"</span> <span class="attr">reloadable</span>=<span class="string">"true"</span> /&gt;</span> </span><br><span class="line">			<span class="tag">&lt;<span class="name">Valve</span> <span class="attr">className</span>=<span class="string">"org.apache.catalina.valves.AccessLogValve"</span> <span class="attr">directory</span>=<span class="string">"logs"</span></span></span><br><span class="line"><span class="tag">               <span class="attr">prefix</span>=<span class="string">"localhost_access_log"</span> <span class="attr">suffix</span>=<span class="string">".txt"</span></span></span><br><span class="line"><span class="tag">               <span class="attr">pattern</span>=<span class="string">"%h %l %u %t <span class="symbol">&amp;quot;</span>%r<span class="symbol">&amp;quot;</span> %s %b"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p>然后重启，发现两个域名都可以用https访问了。</p>
+<hr>
+]]></content>
+  </entry>
+  <entry>
+    <title>腾讯云centos7 搭建mysql环境</title>
+    <url>/2020/12/12/%E8%85%BE%E8%AE%AF%E4%BA%91centos7-%E6%90%AD%E5%BB%BAmysql%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<p><strong>1、安装mysql</strong></p>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment">##添加可以用于安装数据库系统的MySQL存储库 </span></span><br><span class="line">yum localinstall -y <span class="symbol">https:</span>/<span class="regexp">/dev.mysql.com/get</span><span class="regexp">/mysql57-community-release-el7-9.noarch.rpm</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">##安装 </span></span><br><span class="line"><span class="regexp">yum install -y mysql-community-server</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">##启动 </span></span><br><span class="line"><span class="regexp">systemctl start mysqld</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p><strong>2、修改root密码</strong></p>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment">##查看初始密码 </span></span><br><span class="line">grep <span class="string">'temporary password'</span> /var/log/mysqld.log</span><br><span class="line"></span><br><span class="line"><span class="number">2017</span>-<span class="number">10</span>-<span class="number">12</span><span class="symbol">T02:</span><span class="number">37</span><span class="symbol">:</span><span class="number">57.483675</span>Z <span class="number">1</span> [Note] A temporary password is generated <span class="keyword">for</span> root@localhost: **<span class="number">6</span>uRg%NmxG9</span><br><span class="line"></span><br><span class="line">mysql -u root -p 回车输入以上查询的密码登录</span><br><span class="line"></span><br><span class="line"><span class="comment">##关闭密码强度校验</span></span><br><span class="line">set global validate_password_policy=<span class="number">0</span>;</span><br><span class="line">set global validate_password_length=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">##修改初始密码</span></span><br><span class="line">ALTER USER <span class="string">'root'</span>@<span class="string">'localhost'</span> IDENTIFIED BY <span class="string">'password'</span>;</span><br><span class="line"><span class="comment">##刷新权限</span></span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p><strong>3、配置远程访问</strong></p>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment">##备份</span></span><br><span class="line">cp /etc/my.cnf /etc/my.cnf_bk</span><br><span class="line"><span class="comment">##编辑</span></span><br><span class="line">vi /etc/my.cnf</span><br><span class="line"><span class="comment">##在最后面加上一行</span></span><br><span class="line">bind-address = <span class="number">0</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">0</span></span><br><span class="line"><span class="comment">##重启</span></span><br><span class="line">systemctl restart mysqld</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p><strong>4、创建远程访问用户</strong></p>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment">##创建用户</span></span><br><span class="line">CREATE USER <span class="string">'husen'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'123456'</span>;</span><br><span class="line"><span class="comment">##如果创建用户提示密码强度不够，则用第2步中的方法关闭密码强度校验</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##赋予远程访问权限</span></span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO <span class="string">'husen'</span>@<span class="string">'%'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">##刷新权限</span></span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>Windows 修改桌面Desktop的默认路径为D盘</title>
+    <url>/2020/12/12/Windows-%E4%BF%AE%E6%94%B9%E6%A1%8C%E9%9D%A2Desktop%E7%9A%84%E9%BB%98%E8%AE%A4%E8%B7%AF%E5%BE%84%E4%B8%BAD%E7%9B%98/</url>
+    <content><![CDATA[<p><strong>1、</strong>点击<code>开始菜单</code>→<code>运行</code>，输入“regedit”，打开注册表编辑器。</p>
+<p><strong>2、</strong> 依次展开注册表里的<br><code>计算机\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders</code><br>（不区分大小写）</p>
+<p><strong>3、</strong>找到<code>Desktop</code>，修改其值为你想要的路径，重启电脑即可。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>windows10 删除“这台电脑”中导航栏的文档、下载、视频</title>
+    <url>/2020/12/12/windows10-%E5%88%A0%E9%99%A4%E2%80%9C%E8%BF%99%E5%8F%B0%E7%94%B5%E8%84%91%E2%80%9D%E4%B8%AD%E5%AF%BC%E8%88%AA%E6%A0%8F%E7%9A%84%E6%96%87%E6%A1%A3%E3%80%81%E4%B8%8B%E8%BD%BD%E3%80%81%E8%A7%86%E9%A2%91/</url>
+    <content><![CDATA[<p>把以下内容复制保存在文本文件中，另存为<code>.reg</code>格式，然后双击运行即可。如果想恢复，就去掉前面的<code>-</code>号双击运行一次。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">;删除文档文件夹</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;A8CDFF1C-4878-43be-B5FD-F8091C1C60D0&#125;]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;d3162b92-9365-467a-956b-92703aca08af&#125;]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;A8CDFF1C-4878-43be-B5FD-F8091C1C60D0&#125;]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;d3162b92-9365-467a-956b-92703aca08af&#125;]</span><br><span class="line"></span><br><span class="line">;删除载文件夹</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;374DE290-123F-4565-9164-39C4925E467B&#125;]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;088e3905-0323-4b02-9826-5d99428e115f&#125;]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;374DE290-123F-4565-9164-39C4925E467B&#125;]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;088e3905-0323-4b02-9826-5d99428e115f&#125;]</span><br><span class="line"></span><br><span class="line">;删除音乐文件夹</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;1CF1260C-4DD0-4ebb-811F-33C572699FDE&#125;]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;3dfdf296-dbec-4fb4-81d1-6a3438bcf4de&#125;]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;1CF1260C-4DD0-4ebb-811F-33C572699FDE&#125;]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;3dfdf296-dbec-4fb4-81d1-6a3438bcf4de&#125;]</span><br><span class="line"></span><br><span class="line">;删除图片文件夹</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;3ADD1653-EB32-4cb0-BBD7-DFA0ABB5ACCA&#125;]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;24ad3ad4-a569-4530-98e1-ab02f9417aa8&#125;]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;3ADD1653-EB32-4cb0-BBD7-DFA0ABB5ACCA&#125;]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;24ad3ad4-a569-4530-98e1-ab02f9417aa8&#125;]</span><br><span class="line"></span><br><span class="line">;删除视频文件夹</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;A0953C92-50DC-43bf-BE83-3742FED03C9C&#125;]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a&#125;]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;A0953C92-50DC-43bf-BE83-3742FED03C9C&#125;]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\&#123;f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a&#125;]</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>123</title>
+    <url>/2020/12/12/123/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+</search>

@@ -19,7 +19,7 @@
   
   
   <link rel="icon" type="image/x-icon" href="/logo.png">
-  <title>archives: 7/2020: 2020 [ 技术流 ]</title>
+  <title>CentOS 7 搭建Maven [ 技术流 ]</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -46,7 +46,7 @@
           
       
           
-            <li class="pure-menu-item actived"><a href="/archives" class="pure-menu-link">归档</a></li>
+            <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">归档</a></li>
           
       
           
@@ -72,58 +72,81 @@
 
   <div class="container" id="content-outer">
     <div class="inner" id="content-inner">
-      
-
-  
-  
-    
-    
-    <section class="post page archives">
-      <h3 class="archive-year-wrap">
-        <a href="/archives/2020" class="archive-year">
-          2020
-        </a>
-      </h3>
-      <div class="archives">
-  
-  <div class="archive" >
-  <a class="post-go" href="/2020/07/09/去掉win10磁盘盘符重复显示/">
-    <div>
-      <span class="date">
-        07-09
+      <div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        CentOS 7 搭建Maven
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-12-12T07:25:05.000Z">
+        2020-12-12
+      </time>
+        
       </span>
       <span class="slash">/</span>
-      去掉 win10 磁盘盘符重复显示
-    </div>
-
-    <!--<div class="excerpt">-->
-      <!---->
-    <!--</div>-->
-  </a>
-
-</div>
-
-  
-  
-  <div class="archive" >
-  <a class="post-go" href="/2020/07/03/hello-world/">
-    <div>
-      <span class="date">
-        07-03
+      <span class="post-meta">
+      <span class="post-tags">
+        
       </span>
+    </span>
       <span class="slash">/</span>
-      Hello World
+      <span class="read">
+      <span id="busuanzi_value_page_pv"></span> 点击
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 1 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <p><strong>1、选择要放maven的位置，下载安装包</strong></p>
+<p><code>wget http://mirror.bit.edu.cn/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz</code></p>
+<hr>
+<p><strong>2、解压在当前目录，记住当前目录路径</strong></p>
+<p><code>tar -zxvf apache-maven-3.5.2-bin.tar.gz</code></p>
+<hr>
+<p><strong>3、配置环境变量</strong></p>
+<p><code>vi /etc/profile</code></p>
+<p>在文件末尾添加</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">M2_HOME=第2步中的路径</span><br><span class="line">export PATH=$&#123;M2_HOME&#125;/bin:$&#123;PATH&#125;</span><br></pre></td></tr></table></figure>
+<p>重载生效</p>
+<p><code>source /etc/profile</code></p>
+<hr>
+<p><strong>4、检查是否生效</strong></p>
+<p><code>mvn -v</code></p>
+
     </div>
 
-    <!--<div class="excerpt">-->
-      <!---->
-    <!--</div>-->
-  </a>
+    <div>全文完。</div>
+  </article>
+  <div class="toc-container">
+    
 
+  </div>
 </div>
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/2020/12/12/cmder%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="next" title="cmder中文乱码解决方案">
+          cmder中文乱码解决方案
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/2020/12/12/windows-10-8-7-%E5%92%8C-CentOS-7-%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%B9%B6%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4windows%E5%90%AF%E5%8A%A8/" rel="prev" title="windows 10/8/7 和 CentOS 7 双系统并设置默认windows启动">
+            windows 10/8/7 和 CentOS 7 双系统并设置默认windows启动
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
 
-
-  </div></section>
 
     </div>
 

@@ -19,7 +19,7 @@
   
   
   <link rel="icon" type="image/x-icon" href="/logo.png">
-  <title>Hello World [ 技术流 ]</title>
+  <title>腾讯云centos7 搭建mysql环境 [ 技术流 ]</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -76,12 +76,12 @@
   <article class="post" id="post">
     <header class="post-header text-center">
       <h1 class="title">
-        Hello World
+        腾讯云centos7 搭建mysql环境
       </h1>
       <span>
         
-        <time class="time" datetime="2020-07-03T10:45:18.785Z">
-        2020-07-03
+        <time class="time" datetime="2020-12-12T07:40:55.000Z">
+        2020-12-12
       </time>
         
       </span>
@@ -96,35 +96,33 @@
       <span id="busuanzi_value_page_pv"></span> 点击
     </span>
       <span class="slash">/</span>
-      <span class="read">阅读耗时 1 分钟</span>
+      <span class="read">阅读耗时 2 分钟</span>
     </header>
 
     <div class="post-content">
-      <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+      <p><strong>1、安装mysql</strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##添加可以用于安装数据库系统的MySQL存储库 </span></span><br><span class="line">yum localinstall -y <span class="symbol">https:</span>/<span class="regexp">/dev.mysql.com/get</span><span class="regexp">/mysql57-community-release-el7-9.noarch.rpm</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">##安装 </span></span><br><span class="line"><span class="regexp">yum install -y mysql-community-server</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">##启动 </span></span><br><span class="line"><span class="regexp">systemctl start mysqld</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>2、修改root密码</strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##查看初始密码 </span></span><br><span class="line">grep <span class="string">'temporary password'</span> /var/log/mysqld.log</span><br><span class="line"></span><br><span class="line"><span class="number">2017</span>-<span class="number">10</span>-<span class="number">12</span><span class="symbol">T02:</span><span class="number">37</span><span class="symbol">:</span><span class="number">57.483675</span>Z <span class="number">1</span> [Note] A temporary password is generated <span class="keyword">for</span> root@localhost: **<span class="number">6</span>uRg%NmxG9</span><br><span class="line"></span><br><span class="line">mysql -u root -p 回车输入以上查询的密码登录</span><br><span class="line"></span><br><span class="line"><span class="comment">##关闭密码强度校验</span></span><br><span class="line">set global validate_password_policy=<span class="number">0</span>;</span><br><span class="line">set global validate_password_length=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">##修改初始密码</span></span><br><span class="line">ALTER USER <span class="string">'root'</span>@<span class="string">'localhost'</span> IDENTIFIED BY <span class="string">'password'</span>;</span><br><span class="line"><span class="comment">##刷新权限</span></span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<hr>
+<p><strong>3、配置远程访问</strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##备份</span></span><br><span class="line">cp /etc/my.cnf /etc/my.cnf_bk</span><br><span class="line"><span class="comment">##编辑</span></span><br><span class="line">vi /etc/my.cnf</span><br><span class="line"><span class="comment">##在最后面加上一行</span></span><br><span class="line">bind-address = <span class="number">0</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">0</span></span><br><span class="line"><span class="comment">##重启</span></span><br><span class="line">systemctl restart mysqld</span><br></pre></td></tr></table></figure>
 
+
+<hr>
+<p><strong>4、创建远程访问用户</strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##创建用户</span></span><br><span class="line">CREATE USER <span class="string">'husen'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'123456'</span>;</span><br><span class="line"><span class="comment">##如果创建用户提示密码强度不够，则用第2步中的方法关闭密码强度校验</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##赋予远程访问权限</span></span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO <span class="string">'husen'</span>@<span class="string">'%'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">##刷新权限</span></span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
     </div>
 
     <div>全文完。</div>
   </article>
   <div class="toc-container">
     
-  <div id="toc" class="toc-article">
-    <strong class="toc-title">目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
-  </div>
-
 
   </div>
 </div>
@@ -132,12 +130,17 @@
     <div class="post-nav">
       <div class="post-nav-item post-nav-next">
         
+          <span>〈 </span>
+          <a href="/2020/12/12/tomcat-%E9%85%8D%E7%BD%AE%E5%A4%9A%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AE%E8%AE%BF%E9%97%AE%E5%90%8C%E4%B8%80%E4%B8%AA%E7%BD%91%E7%AB%99%E7%9A%84%E7%9B%B8%E5%90%8C%E6%88%96%E8%80%85%E4%B8%8D%E5%90%8C%E9%A1%B9%E7%9B%AE/" rel="next" title="tomcat 配置多域名访问访问同一个网站的相同或者不同项目">
+          tomcat 配置多域名访问访问同一个网站的相同或者不同项目
+          </a>
+        
       </div>
   
       <div class="post-nav-item post-nav-prev">
           
-          <a href="/2020/07/09/%E5%8E%BB%E6%8E%89win10%E7%A3%81%E7%9B%98%E7%9B%98%E7%AC%A6%E9%87%8D%E5%A4%8D%E6%98%BE%E7%A4%BA/" rel="prev" title="去掉 win10 磁盘盘符重复显示">
-            去掉 win10 磁盘盘符重复显示
+          <a href="/2020/12/12/Windows-%E4%BF%AE%E6%94%B9%E6%A1%8C%E9%9D%A2Desktop%E7%9A%84%E9%BB%98%E8%AE%A4%E8%B7%AF%E5%BE%84%E4%B8%BAD%E7%9B%98/" rel="prev" title="Windows 修改桌面Desktop的默认路径为D盘">
+            Windows 修改桌面Desktop的默认路径为D盘
           </a>
           <span>〉</span>
         

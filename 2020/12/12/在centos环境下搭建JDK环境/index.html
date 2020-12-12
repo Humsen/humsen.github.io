@@ -19,7 +19,7 @@
   
   
   <link rel="icon" type="image/x-icon" href="/logo.png">
-  <title>archives: 7/2020: 2020 [ 技术流 ]</title>
+  <title>在centos环境下搭建JDK环境 [ 技术流 ]</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -46,7 +46,7 @@
           
       
           
-            <li class="pure-menu-item actived"><a href="/archives" class="pure-menu-link">归档</a></li>
+            <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">归档</a></li>
           
       
           
@@ -72,58 +72,75 @@
 
   <div class="container" id="content-outer">
     <div class="inner" id="content-inner">
-      
-
-  
-  
-    
-    
-    <section class="post page archives">
-      <h3 class="archive-year-wrap">
-        <a href="/archives/2020" class="archive-year">
-          2020
-        </a>
-      </h3>
-      <div class="archives">
-  
-  <div class="archive" >
-  <a class="post-go" href="/2020/07/09/去掉win10磁盘盘符重复显示/">
-    <div>
-      <span class="date">
-        07-09
+      <div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        在centos环境下搭建JDK环境
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-12-12T07:06:46.000Z">
+        2020-12-12
+      </time>
+        
       </span>
       <span class="slash">/</span>
-      去掉 win10 磁盘盘符重复显示
-    </div>
-
-    <!--<div class="excerpt">-->
-      <!---->
-    <!--</div>-->
-  </a>
-
-</div>
-
-  
-  
-  <div class="archive" >
-  <a class="post-go" href="/2020/07/03/hello-world/">
-    <div>
-      <span class="date">
-        07-03
+      <span class="post-meta">
+      <span class="post-tags">
+        
       </span>
+    </span>
       <span class="slash">/</span>
-      Hello World
+      <span class="read">
+      <span id="busuanzi_value_page_pv"></span> 点击
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 1 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <p><strong>1、上传、解压</strong></p>
+<p><code>tar -zxvf jdk-8u151-linux-x64.tar.gz</code></p>
+<hr>
+<p><strong>2、设置环境变量</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">vi /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 方案1 java environment</span></span><br><span class="line">JAVA_HOME=/home/jdk/jdk1.8.0_151</span><br><span class="line">JRE_HOME=/home/jdk/jdk1.8.0_151/jre</span><br><span class="line">CLASS_PATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib</span><br><span class="line">PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin</span><br><span class="line">export JAVA_HOME JRE_HOME CLASS_PATH PATH</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 方案2 jdk</span></span><br><span class="line">export JAVA_HOME=/home/husen/jdk/jdk1.8.0_181</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>3、生效</strong></p>
+<p><code>source /etc/profile</code></p>
+
     </div>
 
-    <!--<div class="excerpt">-->
-      <!---->
-    <!--</div>-->
-  </a>
+    <div>全文完。</div>
+  </article>
+  <div class="toc-container">
+    
 
+  </div>
 </div>
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/2020/12/12/tomcat%E5%9C%A8centos%E5%90%AF%E5%8A%A8%E7%BC%93%E6%85%A2%E8%A7%A3%E5%86%B3/" rel="next" title="tomcat在centos启动缓慢解决">
+          tomcat在centos启动缓慢解决
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/2020/12/12/windows%E8%AE%BE%E7%BD%AE%E8%BD%AF%E4%BB%B6%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/" rel="prev" title="windows设置软件开机启动">
+            windows设置软件开机启动
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
 
-
-  </div></section>
 
     </div>
 

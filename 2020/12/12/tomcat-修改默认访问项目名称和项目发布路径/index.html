@@ -19,7 +19,7 @@
   
   
   <link rel="icon" type="image/x-icon" href="/logo.png">
-  <title>archives: 7/2020: 2020 [ 技术流 ]</title>
+  <title>tomcat 修改默认访问项目名称和项目发布路径 [ 技术流 ]</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -46,7 +46,7 @@
           
       
           
-            <li class="pure-menu-item actived"><a href="/archives" class="pure-menu-link">归档</a></li>
+            <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">归档</a></li>
           
       
           
@@ -72,58 +72,92 @@
 
   <div class="container" id="content-outer">
     <div class="inner" id="content-inner">
-      
-
-  
-  
-    
-    
-    <section class="post page archives">
-      <h3 class="archive-year-wrap">
-        <a href="/archives/2020" class="archive-year">
-          2020
-        </a>
-      </h3>
-      <div class="archives">
-  
-  <div class="archive" >
-  <a class="post-go" href="/2020/07/09/去掉win10磁盘盘符重复显示/">
-    <div>
-      <span class="date">
-        07-09
+      <div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        tomcat 修改默认访问项目名称和项目发布路径
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-12-12T07:39:32.000Z">
+        2020-12-12
+      </time>
+        
       </span>
       <span class="slash">/</span>
-      去掉 win10 磁盘盘符重复显示
-    </div>
-
-    <!--<div class="excerpt">-->
-      <!---->
-    <!--</div>-->
-  </a>
-
-</div>
-
-  
-  
-  <div class="archive" >
-  <a class="post-go" href="/2020/07/03/hello-world/">
-    <div>
-      <span class="date">
-        07-03
+      <span class="post-meta">
+      <span class="post-tags">
+        
       </span>
+    </span>
       <span class="slash">/</span>
-      Hello World
+      <span class="read">
+      <span id="busuanzi_value_page_pv"></span> 点击
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 3 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <p><strong>1、修改项目发布路径</strong></p>
+<p>tomcat默认的而发布路径为     <code>tomcat/webapps/</code>目录，打不死这个目录下有一些默认的项目，在tomcat启动的时候会跟着一起加载。如果不想删除这些项目，可以把tomcat发布的路径修改到其他地方。</p>
+<p>找到<code>tomcat/conf/server.xml</code>文件，修改里面这一行的<code>appBase</code>为其他路径即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Host name&#x3D;&quot;localhost&quot;  appBase&#x3D;&quot;&#x2F;root&#x2F;webfile&#x2F;webapps&quot; unpackWARs&#x3D;&quot;true&quot; autoDeploy&#x3D;&quot;true&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>其中：</p>
+<ul>
+<li>name是虚拟主机名，对应目录 /conf /Catalina /localhost</li>
+<li>unpackWARs 为是否自动解压war文件，如果设置为true，表示把war文件先展开再运行。如果为false则直接运行war文件</li>
+<li>autoDeploy，默认为true，表示如果有新的WEB应用放入appBase并且Tomcat在运行的情况下，自动载入应用</li>
+</ul>
+<p><em>特地别：</em><br>这里既可以用相对路径，也可以用绝对路径。<br>相对路径默认<code>tomcat</code>目录为根目录</p>
+<hr>
+<p><strong>2、修改默认访问项目</strong></p>
+<p>最简单的，可以直接把项目名称修改为<code>ROOT</code>，放在    <code>tomcat/webapps/</code>目录即可。</p>
+<p>如果不想修改。那么在第1步中的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Host name&#x3D;&quot;localhost&quot;  appBase&#x3D;&quot;&#x2F;root&#x2F;webfile&#x2F;webapps&quot; unpackWARs&#x3D;&quot;true&quot; autoDeploy&#x3D;&quot;true&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>下面加上下面这句即可，其中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 设置默认项目名称 --&gt;</span><br><span class="line">&lt;Context path&#x3D;&quot;&quot; docBase&#x3D;&quot;&#x2F;root&#x2F;webfile&#x2F;web&quot; reloadable&#x3D;&quot;true&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>path</code>代表用浏览器访问的时候的的路径，如<a href="http://localhost:8080/web来访问path=&quot;/web&quot;" target="_blank" rel="noopener">http://localhost:8080/web来访问path=&quot;/web&quot;</a></li>
+<li><code>docBase</code>为你的项目的路径，这里同样既可以用相对路径，也可以用绝对路径。设置好了之后就会把项目自动映射到ROOT</li>
+<li>reloadable，如果这个属性设为true，tomcat服务器在运行状态下会监视在WEB-INF/classes和WEB-INF/lib目录下class文件的改动，如果监测到有class文件被更新的，服务器会自动重新加载Web应用</li>
+</ul>
+<hr>
+
     </div>
 
-    <!--<div class="excerpt">-->
-      <!---->
-    <!--</div>-->
-  </a>
+    <div>全文完。</div>
+  </article>
+  <div class="toc-container">
+    
 
+  </div>
 </div>
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/2020/12/12/Java-Mail-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E5%AE%9E%E4%BE%8B/" rel="next" title="Java Mail 发送邮件实例">
+          Java Mail 发送邮件实例
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/2020/12/12/tomcat-%E9%85%8D%E7%BD%AE%E5%A4%9A%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AE%E8%AE%BF%E9%97%AE%E5%90%8C%E4%B8%80%E4%B8%AA%E7%BD%91%E7%AB%99%E7%9A%84%E7%9B%B8%E5%90%8C%E6%88%96%E8%80%85%E4%B8%8D%E5%90%8C%E9%A1%B9%E7%9B%AE/" rel="prev" title="tomcat 配置多域名访问访问同一个网站的相同或者不同项目">
+            tomcat 配置多域名访问访问同一个网站的相同或者不同项目
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
 
-
-  </div></section>
 
     </div>
 

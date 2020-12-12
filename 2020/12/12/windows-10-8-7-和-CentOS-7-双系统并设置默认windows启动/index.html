@@ -19,7 +19,7 @@
   
   
   <link rel="icon" type="image/x-icon" href="/logo.png">
-  <title>Hello World [ 技术流 ]</title>
+  <title>windows 10/8/7 和 CentOS 7 双系统并设置默认windows启动 [ 技术流 ]</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -76,12 +76,12 @@
   <article class="post" id="post">
     <header class="post-header text-center">
       <h1 class="title">
-        Hello World
+        windows 10/8/7 和 CentOS 7 双系统并设置默认windows启动
       </h1>
       <span>
         
-        <time class="time" datetime="2020-07-03T10:45:18.785Z">
-        2020-07-03
+        <time class="time" datetime="2020-12-12T07:26:59.000Z">
+        2020-12-12
       </time>
         
       </span>
@@ -96,23 +96,46 @@
       <span id="busuanzi_value_page_pv"></span> 点击
     </span>
       <span class="slash">/</span>
-      <span class="read">阅读耗时 1 分钟</span>
+      <span class="read">阅读耗时 6 分钟</span>
     </header>
 
     <div class="post-content">
-      <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+      <p><strong>安装结果：</strong></p>
+<pre><code>windows pro 64位
+centos 7 dvd 64位</code></pre><h2 id="​"><a href="#​" class="headerlink" title="​    "></a>​    </h2><p><strong>准备工作：</strong></p>
+<pre><code>安装好的windows系统（最好先安装windows，因为后安装的centos会覆盖windows启动项，我们会在centos里恢复windows启动项）
+去centos官网下载最新的centos7 dvd
+U盘（最好8G以上）
+UltraISO 最新版（制作启动U盘）
+在windows上准备（压缩）30G左右空间</code></pre><hr>
+<p><strong>1、制作启动U盘</strong><br>    百度下载并安装UltraISO最新版，选择试用。Crtl+O（或者 文件-&gt; 打开）打开下载好的centos7系统镜像。如下图：<br><img src="/images/2020/12/12/52662000.png" alt=""></p>
+<p><img src="/images/2020/12/12/52671000.png" alt=""></p>
+<pre><code>然后插入准备好的U盘，备份U盘里的数据（后面的操作会格式化U盘）。然后在菜单栏选择 启动 -&gt; 写入硬盘镜像</code></pre><p><img src="/images/2020/12/12/52838000.png" alt=""></p>
+<pre><code>硬盘驱动器就是U盘，映像文件默认加载，其余默认，点击`写入`就开始制作</code></pre><p><img src="/images/2020/12/12/52853000.png" alt=""></p>
+<p>​    </p>
+<hr>
+<p><strong>2、安装centos系统</strong><br>    重启电脑，进入Bios设置使用U盘启动。此处不会的可百度。启动完成之后，选择第一项<code>Install centos7</code></p>
+<p><img src="/images/2020/12/12/53040000.png" alt=""></p>
+<pre><code>此处若进入选择语言界面，则说明一切正常，直接看第3步。否则进入grub界面，需要继续设置。原因是没有找到安装项。
+下方的提示信息将显示为
+vmlinuz initrd=initrd.img inst.stage2=hd:LABEL=CentOSx207x20x86_64 rd.live.check quiet
+移动光标，删除 
+LABEL=CentOSx207x20x86_64 rd.live.check 这部分，并用 linux dd 替换，最终的内容为
+vmlinuz initrd=initrd.img linux dd quiet
+稍后会出现一系列代码，依据你的优盘名称记下对应 DEVICE 列的值，一般是 sdb4 
+强制关闭计算机后再开机，按照上述步骤，按 Tab 键，修改启动参数，这次修改为 
+vmlinuz initrd=initrd.img inst.stage2=hd:/dev/sdb4 
+即可进入安装步骤</code></pre><p>​    </p>
+<hr>
+<p><strong>3、配置centos安装（手动分区）</strong></p>
+<pre><code>参考教程 [配置centos安装费（手动分区）](http://www.linuxidc.com/Linux/2016-06/132051p3.htm &quot;配置centos安装费（手动分区）&quot;)</code></pre><p>​    </p>
+<hr>
+<p><strong>4、修复windwos启动项</strong></p>
+<pre><code>centos安装完成之后，会覆盖windows的启动项，这时候，只有一个centos启动项。我们在centos里面恢复windows的启动项，并设置6秒后默认启动windows。</code></pre><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">在root账户下 </span><br><span class="line">cp /etc/grub.d/40_custom /etc/grub.d/40_custom_bk #备份</span><br><span class="line">vi /etc/grub.d/40_custom</span><br><span class="line"><span class="meta">#</span><span class="bash">打开文件后，按i编辑，在文档内加入</span></span><br><span class="line"></span><br><span class="line">menuentry 'Windows 10'&#123;</span><br><span class="line">	set root=(hd0,1)</span><br><span class="line">	chainloader +1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">记住此处windows的名称Windows 10，用作后面修改默认启动项</span></span><br><span class="line"><span class="meta">#</span><span class="bash">保存退出后</span></span><br><span class="line">grub2-mkconfig -o /boot/grub2/grub.cfg</span><br><span class="line"><span class="meta">#</span><span class="bash"> 然后reboot就可以看到windows启动项了，此时默认启动项是centos</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 此处先不重启，接着输入。或者重启后进入root账户</span></span><br><span class="line">cp /etc/default/grub /etc/default/grub_bk #备份</span><br><span class="line">vim /etc/default/grub</span><br><span class="line"><span class="meta">#</span><span class="bash">注释掉GRUB_DEFAULT=saved</span></span><br><span class="line"><span class="meta">#</span><span class="bash">在这一行的下面插入GRUB_DEFAULT=’Windows 10’，保存并退出。</span></span><br><span class="line"><span class="meta">#</span><span class="bash">此处的windows 10 是前面取的名字，两处只要一致即可</span></span><br><span class="line">grub2-mkconfig --output=/boot/grub2/grub.cfg</span><br><span class="line"><span class="meta">#</span><span class="bash">执行上面一步生效</span></span><br><span class="line"><span class="meta">#</span><span class="bash">reboot可以看到电脑启动后光标默认在windows上，如果这时不做选择则自启动的是windows</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p><strong>注意：</strong><br>    网上还有一种用EasyBCD制作启动项的，这个容易报错，进入centos会进入grub界面，我试了几次都没成功，按照网上的方法找不到启动盘，centos下的分区显示为Unknown disk.虽然这种方法在项目系统的界面比较好看，但是有一个系统会重启计算机再启动。相当于在选择的时候已经默认启动了一个系统（一般为windows）。</p>
 
     </div>
 
@@ -122,7 +145,7 @@
     
   <div id="toc" class="toc-article">
     <strong class="toc-title">目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#​"><span class="toc-text">​    </span></a></li></ol>
   </div>
 
 
@@ -132,12 +155,17 @@
     <div class="post-nav">
       <div class="post-nav-item post-nav-next">
         
+          <span>〈 </span>
+          <a href="/2020/12/12/CentOS-7-%E6%90%AD%E5%BB%BAMaven/" rel="next" title="CentOS 7 搭建Maven">
+          CentOS 7 搭建Maven
+          </a>
+        
       </div>
   
       <div class="post-nav-item post-nav-prev">
           
-          <a href="/2020/07/09/%E5%8E%BB%E6%8E%89win10%E7%A3%81%E7%9B%98%E7%9B%98%E7%AC%A6%E9%87%8D%E5%A4%8D%E6%98%BE%E7%A4%BA/" rel="prev" title="去掉 win10 磁盘盘符重复显示">
-            去掉 win10 磁盘盘符重复显示
+          <a href="/2020/12/12/centos-%E4%B8%8B%E8%AE%BF%E9%97%AE-windows-NTFS-%E5%88%86%E5%8C%BA/" rel="prev" title="centos 下访问 windows NTFS 分区">
+            centos 下访问 windows NTFS 分区
           </a>
           <span>〉</span>
         

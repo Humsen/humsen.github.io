@@ -19,7 +19,7 @@
   
   
   <link rel="icon" type="image/x-icon" href="/logo.png">
-  <title>Hello World [ 技术流 ]</title>
+  <title>虚拟机配置 Centos NAT模式 [ 技术流 ]</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -76,12 +76,12 @@
   <article class="post" id="post">
     <header class="post-header text-center">
       <h1 class="title">
-        Hello World
+        虚拟机配置 Centos NAT模式
       </h1>
       <span>
         
-        <time class="time" datetime="2020-07-03T10:45:18.785Z">
-        2020-07-03
+        <time class="time" datetime="2020-12-12T07:17:45.000Z">
+        2020-12-12
       </time>
         
       </span>
@@ -96,23 +96,43 @@
       <span id="busuanzi_value_page_pv"></span> 点击
     </span>
       <span class="slash">/</span>
-      <span class="read">阅读耗时 1 分钟</span>
+      <span class="read">阅读耗时 4 分钟</span>
     </header>
 
     <div class="post-content">
-      <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+      <p><strong>1、配置vmware</strong></p>
+<pre><code>在VMware里，依次点击”编辑“ - ”虚拟网络编辑器“</code></pre><p><img src="/images/2020/12/12/58479000.png" alt=""></p>
+<pre><code>选择更改设置，然后就可以修改</code></pre><p><img src="/images/2020/12/12/58587000.png" alt=""></p>
+<pre><code>修改一下几个地方
+1）选择NAT模式
+2）选择NAT模式
+3）设置子网IP和子网掩码（子网IP与宿主机的ip一定不能处在同一地址范围里，否则就算虚拟机能上网，网络既慢，还不稳定。）
+4）NAT设置（设置网关，一般默认即可）</code></pre><p><img src="/images/2020/12/12/58636000.png" alt=""></p>
+<p><img src="/images/2020/12/12/58702000.png" alt=""></p>
+<hr>
+<p><strong>2、设置虚拟机系统的模式为NAT模式</strong></p>
+<p>以下两个二选一即可</p>
+<p><img src="/images/2020/12/12/62575000.jpg" alt=""></p>
+<p><img src="/images/2020/12/12/62586000.jpg" alt=""></p>
+<hr>
+<p><strong>3、配置网卡配置文件</strong></p>
+<pre><code>修改 `/etc/sysconfig/network-scripts/ifcfg-ens××`文件，这里的××具体不一样。
+（类似ifcfg-*之类的文件）</code></pre><p>修改和添加如下信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">BOOTPROTO=static #原始值“dhcp”，改为“static”</span><br><span class="line">IPADDR=192.168.186.11 #添加NAT上网的静态IP地址</span><br><span class="line">NETMASK=255.255.255.0 #添加子网掩码</span><br><span class="line">GATEWAY=192.168.186.2 #添加网关，根据VMware 软件‘虚拟网络编辑器’中的子网配置</span><br><span class="line">DNS1=192.168.186.2 #添加首选DNS服务器，和网关一致</span><br><span class="line">DNS2=8.8.8.8 #添加备用DNS服务器（可不填）</span><br><span class="line">ONBOOT=yes #原始值“no”，改为“yes”，意为网卡eth0随开机启动</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>修改后完整配置文件如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">TYPE=Ethernet</span><br><span class="line">BOOTPROTO=static</span><br><span class="line">DEFROUTE=yes</span><br><span class="line">PEERDNS=yes</span><br><span class="line">PEERROUTES=yes</span><br><span class="line">IPV4_FAILURE_FATAL=no</span><br><span class="line">IPV6INIT=yes</span><br><span class="line">IPV6_AUTOCONF=yes</span><br><span class="line">IPV6_DEFROUTE=yes</span><br><span class="line">IPV6_PEERDNS=yes</span><br><span class="line">IPV6_PEERROUTES=yes</span><br><span class="line">IPV6_FAILURE_FATAL=no</span><br><span class="line">IPV6_ADDR_GEN_MODE=stable-privacy</span><br><span class="line">NAME=ens33</span><br><span class="line">UUID=09423380-5f41-4ebf-8734-7297b547af10</span><br><span class="line">DEVICE=ens33</span><br><span class="line">ONBOOT=yes</span><br><span class="line">ZONE=</span><br><span class="line">GATEWAY=192.168.186.2</span><br><span class="line">IPADDR=192.168.186.11</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">DNS1=192.168.186.2</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<hr>
+<p><strong>4、重启（服务）生效</strong></p>
+<p><code>/etc/init.d/network restart</code> 或者<code>service network restart</code>或者<code>reboot</code> 即可生效</p>
+<hr>
+<p><strong>5、测试结果</strong></p>
+<p>主机 ping 虚拟机 -&gt; 在电脑cmd命令行下 ping 192.168.186.11<br>虚拟机 ping 主机 -&gt; 在centos中 ping 192.168.186.1<br>虚拟机 ping 百度 -&gt; 在centos中 ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p>
+<hr>
+<p><strong>6、解决虚拟机ping不通主机，但是主机可以ping通虚拟机</strong></p>
+<p>打开<code>防火墙</code>-&gt;<code>选择高级设置</code>-&gt;<code>入站规则</code>-&gt;<code>找到配置文件类型为“公用”的“文件和打印共享（回显请求 – ICMPv4-In）”规则</code>，设计启用并允许。</p>
 
     </div>
 
@@ -120,11 +140,6 @@
   </article>
   <div class="toc-container">
     
-  <div id="toc" class="toc-article">
-    <strong class="toc-title">目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
-  </div>
-
 
   </div>
 </div>
@@ -132,12 +147,17 @@
     <div class="post-nav">
       <div class="post-nav-item post-nav-next">
         
+          <span>〈 </span>
+          <a href="/2020/12/12/windows10-%E9%85%8D%E7%BD%AE-Java-Maven%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" rel="next" title="windows10 配置 Java+Maven环境变量">
+          windows10 配置 Java+Maven环境变量
+          </a>
+        
       </div>
   
       <div class="post-nav-item post-nav-prev">
           
-          <a href="/2020/07/09/%E5%8E%BB%E6%8E%89win10%E7%A3%81%E7%9B%98%E7%9B%98%E7%AC%A6%E9%87%8D%E5%A4%8D%E6%98%BE%E7%A4%BA/" rel="prev" title="去掉 win10 磁盘盘符重复显示">
-            去掉 win10 磁盘盘符重复显示
+          <a href="/2020/12/12/%E6%89%8B%E5%8A%A8%E5%9C%A8%E7%94%B5%E8%84%91%E6%A1%8C%E9%9D%A2%E5%88%B6%E4%BD%9C%E5%85%B3%E6%9C%BA-%E9%87%8D%E5%90%AF%E5%9B%BE%E6%A0%87%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%88%B0%E4%BB%BB%E5%8A%A1%E6%A0%8F/" rel="prev" title="手动在电脑桌面制作关机/重启图标并添加到任务栏">
+            手动在电脑桌面制作关机/重启图标并添加到任务栏
           </a>
           <span>〉</span>
         
