@@ -35,7 +35,7 @@
 <p><code>mvn -v</code></p>
 ]]></content>
       <categories>
-        <category>Centos</category>
+        <category>Linux</category>
       </categories>
       <tags>
         <tag>Centos</tag>
@@ -71,7 +71,7 @@
         <category>虚拟机</category>
       </categories>
       <tags>
-        <tag>CentOS</tag>
+        <tag>Centos</tag>
         <tag>虚拟机</tag>
       </tags>
   </entry>
@@ -165,7 +165,7 @@
 <p><strong>3、自动挂载</strong></p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 备份</span></span><br><span class="line">cp /etc/fstab /etc/fstab_bk</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 编辑</span></span><br><span class="line">vi /etc/fstab #编辑</span><br><span class="line"></span><br><span class="line">在最后添加以下信息，以读写方式挂载磁盘</span><br><span class="line"></span><br><span class="line">/dev/sda5    /ntfs/c-winos   defaults  0  0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">:wq!保存，退出</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输入命令生效生效</span></span><br><span class="line">mount -a</span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者重启</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Centos</category>
+        <category>Linux</category>
       </categories>
       <tags>
         <tag>Centos</tag>
@@ -435,7 +435,7 @@ vmlinuz initrd=initrd.img inst.stage2=hd:/dev/sdb4
 <p><code>source /etc/profile</code></p>
 ]]></content>
       <categories>
-        <category>Centos</category>
+        <category>Linux</category>
       </categories>
       <tags>
         <tag>Centos</tag>
@@ -449,7 +449,7 @@ vmlinuz initrd=initrd.img inst.stage2=hd:/dev/sdb4
 <hr>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看系统当前内核版本:</span></span><br><span class="line">uname -a</span><br><span class="line"></span><br><span class="line">Linux localhost.localdomain 2.6.32-696.18.7.el6.x86_64 #1 SMP Thu Jan 4 17:31:22 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看系统中全部的内核RPM包:</span></span><br><span class="line">rpm -qa | grep kernel</span><br><span class="line"></span><br><span class="line">dracut-kernel-004-409.el6_8.2.noarch</span><br><span class="line">abrt-addon-kerneloops-2.0.8-43.el6.centos.x86_64</span><br><span class="line">kernel-2.6.32-696.18.7.el6.x86_64</span><br><span class="line">kernel-headers-2.6.32-696.18.7.el6.x86_64</span><br><span class="line">libreport-plugin-kerneloops-2.0.9-33.el6.centos.x86_64</span><br><span class="line">kernel-firmware-2.6.32-696.18.7.el6.noarch</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除旧内核的RPM包</span></span><br><span class="line">yum remove kernel--2.6.32-696.el6</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启系统</span></span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Centos - Centos</category>
+        <category>Linux - Centos</category>
       </categories>
   </entry>
   <entry>
@@ -585,7 +585,7 @@ vmlinuz initrd=initrd.img inst.stage2=hd:/dev/sdb4
 <p>4.保存退出<br>5.<code>chmod 755 tomcat8</code> 赋权限<br>6.<code>service tomcat8 start</code> 启动检查<br>7.<code>chkconfig tomcat8 on</code></p>
 ]]></content>
       <categories>
-        <category>Centos</category>
+        <category>Linux</category>
       </categories>
       <tags>
         <tag>Centos</tag>
