@@ -19,7 +19,7 @@
   
   
   <link rel="icon" type="image/x-icon" href="/logo.png">
-  <title>tag: Centos [ 技术流 ]</title>
+  <title>tag: CentOS [ 技术流 ]</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -74,18 +74,7 @@
     <div class="inner" id="content-inner">
       
 <div class="page tag-page" id="tag">
-  <h3 title="Centos下的文章">Centos</h3>
-  
-    <div class="tag-item">
-      
-        <a href="/2020/12/12/%E5%88%A0%E9%99%A4centos-%E6%9B%B4%E6%96%B0%E5%90%8E%E5%A4%9A%E4%BD%99%E7%9A%84%E5%90%AF%E5%8A%A8%E9%A1%B9/">
-          删除centos 更新后多余的启动项
-        </a>
-      
-      <time class="time" datetime="2020-12-12T07:14:49.000Z">
-        2020-12-12
-      </time>
-    </div>
+  <h3 title="CentOS下的文章">CentOS</h3>
   
     <div class="tag-item">
       
@@ -169,6 +158,84 @@
     }
 
     /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+  
+
+
+
+</body>
+</html>
+  /**
      * 给logo设置点击事件
      * 
      * - 回到顶部
